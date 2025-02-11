@@ -5,7 +5,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Space Grotesk", sans-serif;
-  background: #0a0a0a;
+  background: #003049;
   color: #f3f4f6;
 }
 
@@ -21,7 +21,7 @@ body {
   }
 
   .animate-blink {
-    animation: blink 0.8s step-end infinite;
+    animation: blink 0.75s step-end infinite;
   }
 
   @keyframes loading {
@@ -34,7 +34,7 @@ body {
   }
 
   .animate-loading-bar {
-    animation: loading 0.8s ease infinite;
+    animation: loading 1.4s ease infinite;
   }
 }
 
