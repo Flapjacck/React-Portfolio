@@ -4,6 +4,7 @@ interface ProjectProps {
   title: string;
   description: string;
   technologies: string[];
+  link: string;
 }
 
 const projects: ProjectProps[] = [
@@ -12,24 +13,28 @@ const projects: ProjectProps[] = [
     description:
       "Developed a simplified Blackjack game in C, enhancing skills in game logic, input validation, user interaction, control flow, and memory management.",
     technologies: ["C"],
+    link: "https://github.com/Flapjacck/Simple-Blackjack",
   },
   {
     title: "PassDat",
     description:
       "A sleek calculator built with JavaScript, HTML, and CSS that helps students calculate their current grades and determine what they need to pass or achieve their target score.",
     technologies: ["HTML", "CSS", "JS", "GitHub Pages"],
+    link: "https://github.com/Flapjacck/PassDat",
   },
   {
     title: "Solution-Stash",
     description:
       "Full-stack e-commerce with modern UI, secure payment integration, and customizable product inventory.",
     technologies: ["C", "Java", "MarkDown"],
+    link: "https://github.com/Flapjacck/Solution-Stash",
   },
   {
     title: "Portfolio Website",
     description:
       "Modern portfolio website using TypeScript, React, and Tailwind CSS, showcasing projects, skills, and experience with a sleek, responsive design.",
     technologies: ["React", "TypeScript", "Tailwind"],
+    link: "https://github.com/Flapjacck/React-Portfolio",
   },
 ];
 
@@ -64,8 +69,10 @@ export const Projects: React.FC = () => {
                 </div>
                 <div className="flex justify-between items-center">
                   <a
-                    href="#"
+                    href={project.link}
                     className="text-red-400 hover:text-red-300 transition-colors my-4"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     View Project →
                   </a>
