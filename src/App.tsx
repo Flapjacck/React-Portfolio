@@ -4,7 +4,8 @@ import { Navbar } from "./components/Navbar";
 import { Home } from "./components/sections/Home";
 import { About } from "./components/sections/About";
 import { Projects } from "./components/sections/Projects";
-import './App.css'
+import { Pokemon } from "./components/Pokemon";
+import "./App.css";
 
 const App = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -22,9 +23,10 @@ const App = () => {
         <Home />
         <About />
         <Projects />
+        <Pokemon />
       </div>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;

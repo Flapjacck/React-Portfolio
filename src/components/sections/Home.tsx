@@ -31,7 +31,7 @@ export const Home = () => {
               View Projects
             </a>
           </div>
-          </div>
+        </div>
       </RevealOnScroll>
     </section>
   );
