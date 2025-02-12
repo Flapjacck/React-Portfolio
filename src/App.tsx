@@ -2,6 +2,8 @@ import { useState } from "react";
 import { LoadingScreen } from "./components/LoadingScreen";
 import { Navbar } from "./components/Navbar";
 import { Home } from "./components/sections/Home";
+import { About } from "./components/sections/About";
+import { Projects } from "./components/sections/Projects";
 import './App.css'
 
 const App = () => {
@@ -18,6 +20,8 @@ const App = () => {
       >
         <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
         <Home />
+        <About />
+        <Projects />
       </div>
     </>
   )
