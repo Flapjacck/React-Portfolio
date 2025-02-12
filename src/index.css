@@ -36,6 +36,24 @@ body {
   .animate-loading-bar {
     animation: loading 1.4s ease infinite;
   }
+
+  .gradient-bg {
+    background: linear-gradient(-45deg, #EC0B43, #ce518f, #ce1313, #e46868);
+    background-size: 400% 400%;
+    animation: gradient 7s ease infinite;
+  }
+
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
 }
 
 .reveal {

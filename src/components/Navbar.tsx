@@ -15,7 +15,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
         <div className="flex justify-between items-center h-16">
           <a href="#home" className="font-mono text-xl font-bold text-red-100">
             {" "}
-            spencer<span className="text-red-700">.kelly</span>{" "}
+            spencer<span className="gradient-bg bg-clip-text text-transparent">.kelly</span>{" "}
           </a>
 
           <div
