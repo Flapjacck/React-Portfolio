@@ -12,9 +12,25 @@ interface EducationProps {
   coursework: string;
 }
 
-const frontendSkills: string[] = ["React"];
+const frontendSkills: string[] = [
+  "HTML",
+  "CSS",
+  "JavaScript",
+  "TypeScript",
+  "React",
+  "Tailwind",
+  "Vite",
+];
 
-const backendSkills: string[] = ["Node.js"];
+const backendSkills: string[] = [
+  "Java",
+  "Node.js",
+  "Python",
+  "NPM",
+  "Azure",
+  "Git",
+  "C/C++",
+];
 
 const education: EducationProps = {
   degree: "B.S. in Computer Science",
@@ -26,9 +42,9 @@ const education: EducationProps = {
 
 const experiences: ExperienceProps[] = [
   {
-    title: "Placeholder (2020 - Present)",
+    title: "Seeking Internship Opportunities",
     description:
-      "EX. Developed and maintained microservices for cloud-based applications.",
+      "Looking for a summer internship to apply my skills and gain experience in software development.",
   },
   {
     title: "",
@@ -93,7 +109,7 @@ export const About: React.FC = () => {
             </div>
 
             <div className="p-6 rounded-xl border-white/10 border hover:-translate-y-1 hover:shadow-[0_2px_8px_rgba(255,0,0,0.3)] transition-all">
-              <h3 className="text-xl font-bold mb-4"> 💼 Work Experience </h3>
+              <h3 className="text-xl font-bold mb-4"> 💼 Work </h3>
               <div className="space-y-4 text-gray-300">
                 {experiences.map((exp, index) => (
                   <div key={index}>
