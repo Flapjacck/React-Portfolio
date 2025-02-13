@@ -25,7 +25,7 @@ const projects: ProjectProps[] = [
   {
     title: "Solution-Stash",
     description:
-      "Full-stack e-commerce with modern UI, secure payment integration, and customizable product inventory.",
+      "Repo to show my solutions for LeetCode. Most questions will be in written in the C or Java Language.",
     technologies: ["C", "Java", "MarkDown"],
     link: "https://github.com/Flapjacck/Solution-Stash",
   },
