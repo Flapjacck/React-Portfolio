@@ -5,6 +5,7 @@ import { Home } from "./components/sections/Home";
 import { About } from "./components/sections/About";
 import { Projects } from "./components/sections/Projects";
 import { Pokemon } from "./components/Pokemon";
+import { Menu } from "./components/Menu";
 import "./App.css";
 
 const App = () => {
@@ -20,6 +21,7 @@ const App = () => {
         } bg-zinc-800 text-gray-100`}
       >
         <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+        <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
         <Home />
         <About />
         <Projects />
