@@ -10,6 +10,7 @@ export const Menu: FC<MobileMenuProps> = ({ menuOpen, setMenuOpen }) => {
     { label: "Home", href: "#home" },
     { label: "About", href: "#about" },
     { label: "Projects", href: "#projects" },
+    { label: "Gallery", href: "#gallery" },
   ];
 
   return (
