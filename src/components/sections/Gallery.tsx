@@ -9,32 +9,32 @@ interface GalleryImage {
 
 const images: GalleryImage[] = [
   {
-    src: "/Photos/Smokey_tongue.jpg",
+    src: "https://i.imgur.com/weQAhlB.jpeg",
     alt: "Smokey with tongue out",
     caption: "Smokey being Smokey",
   },
   {
-    src: "/Photos/Maverick.jpg",
+    src: "https://i.imgur.com/9UF17QY.jpeg",
     alt: "Maverick",
     caption: "Maverick relaxing",
   },
   {
-    src: "/Photos/me_and_cats.jpg",
+    src: "https://i.imgur.com/2DQBpmZ.jpeg",
     alt: "Me with my cats",
     caption: "Quality time with my feline friends",
   },
   {
-    src: "/Photos/Bazooka.jpg",
+    src: "https://i.imgur.com/Cwhepyn.jpeg",
     alt: "Bazooka",
     caption: "Throwback",
   },
   {
-    src: "/Photos/Me_and_camps.jpg",
+    src: "https://i.imgur.com/ayaKLRZ.jpeg",
     alt: "Me and Camps",
     caption: "Peace and love",
   },
   {
-    src: "/Photos/Kellyroad.jpg",
+    src: "https://i.imgur.com/jALVfZZ.jpeg",
     alt: "Kelly Road",
     caption: "",
   },
