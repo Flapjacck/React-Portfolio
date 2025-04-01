@@ -36,6 +36,19 @@ const projects: ProjectProps[] = [
     technologies: ["React", "TypeScript", "Tailwind"],
     link: "https://github.com/Flapjacck/React-Portfolio",
   },
+  {
+    title: "WhoDatPokemon",
+    description:
+      "A Pokemon guessing game that challenges users to identify Pokemon. Integrates with PokeNode-TS for Pokemon data and features a responsive design with Tailwind CSS.",
+    technologies: ["React", "TypeScript", "Tailwind", "PokeNode-TS"],
+    link: "https://github.com/Flapjacck/WhoDatPokemon",
+  },
+  {
+    title: "TBA....",
+    description: "Keep a lookout for my next project!",
+    technologies: ["TBA"],
+    link: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+  },
 ];
 
 export const Projects: React.FC = () => {
