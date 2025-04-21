@@ -23,11 +23,11 @@ const projects: ProjectProps[] = [
     link: "https://github.com/Flapjacck/PassDat",
   },
   {
-    title: "Solution-Stash",
+    title: "BirdWatch",
     description:
-      "Repo to show my solutions for LeetCode. Most questions will be in written in the C or Java Language.",
-    technologies: ["C", "Java", "MarkDown"],
-    link: "https://github.com/Flapjacck/Solution-Stash",
+      "A web application built with React for exploring and discovering bird courses.",
+    technologies: ["React", "Python", "Node.JS", "Reddit API"],
+    link: "https://github.com/Flapjacck/BirdWatch",
   },
   {
     title: "Portfolio Website",
@@ -42,6 +42,13 @@ const projects: ProjectProps[] = [
       "A Pokemon guessing game that challenges users to identify Pokemon. Integrates with PokeNode-TS for Pokemon data and features a responsive design with Tailwind CSS.",
     technologies: ["React", "TypeScript", "Tailwind", "PokeNode-TS"],
     link: "https://github.com/Flapjacck/WhoDatPokemon",
+  },
+  {
+    title: "Solution-Stash",
+    description:
+      "Repo to show my solutions for LeetCode. Most questions will be in written in the C or Java Language.",
+    technologies: ["C", "Java", "MarkDown"],
+    link: "https://github.com/Flapjacck/Solution-Stash",
   },
   {
     title: "TBA....",
