@@ -6,7 +6,6 @@ import { About } from "./components/sections/About";
 import { Projects } from "./components/sections/Projects";
 import { Pokemon } from "./components/Pokemon";
 import { Menu } from "./components/Menu";
-import { Gallery } from "./components/sections/Gallery";
 import "./App.css";
 
 const App = () => {
@@ -26,7 +25,6 @@ const App = () => {
         <Home />
         <About />
         <Projects />
-        <Gallery />
         <Pokemon />
       </div>
     </>

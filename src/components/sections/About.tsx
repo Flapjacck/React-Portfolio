@@ -59,33 +59,43 @@ export const About: React.FC = () => {
       className="min-h-screen flex items-center justify-center py-20"
     >
       <RevealOnScroll>
-        <div className="max-w-3xl mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-8 gradient-bg bg-clip-text text-transparent text-center">
+        <div className="max-w-5xl mx-auto px-4">
+          <h2 className="text-4xl font-bold mb-12 gradient-bg bg-clip-text text-transparent text-center">
             About Me
           </h2>
 
-          <div className="rounded-xl p-8 border-white/10 border hover:-translate-y-1 hover:shadow-[0_2px_8px_rgba(255,0,0,0.3)] transition-all">
-            <p className="text-gray-300 mb-6">
-              Second year student at Wilfrid Laurier University exploring the
+          <div
+            className="rounded-2xl p-8 border-zinc-800 border bg-zinc-900/50 backdrop-blur-sm 
+                         hover:border-red-500/30 hover:shadow-[0_8px_30px_rgb(255,0,0,0.12)] 
+                         transition-all duration-300 mb-8 group"
+          >
+            <p className="text-gray-300 mb-8 text-lg leading-relaxed">
+              Thrid year student at Wilfrid Laurier University exploring the
               ways computer science can change our world. My love and passion
               for everything tech motivates me throughout this journey.
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {[
                 { title: "Frontend", skills: frontendSkills },
                 { title: "Backend", skills: backendSkills },
               ].map((section, index) => (
                 <div
                   key={index}
-                  className="rounded-xl p-6 hover:-translate-y-1 transition-all"
+                  className="rounded-xl p-6 bg-zinc-800/30 hover:bg-zinc-800/50
+                           border border-zinc-700/50 hover:border-red-500/30
+                           transition-all duration-300 group-hover:translate-y-[-2px]"
                 >
-                  <h3 className="text-xl font-bold mb-4">{section.title}</h3>
+                  <h3 className="text-xl font-bold mb-4 text-red-100 group-hover:text-red-400 transition-colors">
+                    {section.title}
+                  </h3>
                   <div className="flex flex-wrap gap-2">
                     {section.skills.map((tech, key) => (
                       <span
                         key={key}
-                        className="bg-red-500/10 text-red-500 py-1 px-3 rounded-full text-sm hover:bg-red-500/20 hover:shadow-[0_2px_8px_rgba(255,0,0,0.2)] transition"
+                        className="bg-red-500/10 text-red-400 py-1.5 px-4 rounded-full text-sm
+                                 hover:bg-red-500/20 hover:shadow-[0_2px_8px_rgba(255,0,0,0.2)] 
+                                 transition-all transform hover:scale-105"
                       >
                         {tech}
                       </span>
@@ -96,25 +106,52 @@ export const About: React.FC = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-            <div className="p-6 rounded-xl border-white/10 border hover:-translate-y-1 hover:shadow-[0_2px_8px_rgba(255,0,0,0.3)] transition-all">
-              <h3 className="text-xl font-bold mb-4"> 🏫 Education </h3>
-              <ul className="list-disc list-inside text-gray-300 space-y-2">
-                <li>
-                  <strong>{education.degree}</strong> - {education.institution}{" "}
-                  ({education.year})
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div
+              className="rounded-xl p-6 bg-zinc-900/50 backdrop-blur-sm
+                          border border-zinc-800 hover:border-red-500/30 
+                          hover:shadow-[0_8px_30px_rgb(255,0,0,0.12)]
+                          transition-all duration-300 group"
+            >
+              <h3 className="text-2xl font-bold mb-6 flex items-center gap-3 text-red-100 group-hover:text-red-400 transition-colors">
+                <span className="text-3xl">🏫</span> Education
+              </h3>
+              <ul className="space-y-4 text-gray-300">
+                <li className="transform transition-all duration-300 group-hover:translate-x-1">
+                  <div className="font-semibold text-lg text-red-100/90 mb-1">
+                    {education.degree}
+                  </div>
+                  <div className="text-gray-400">
+                    {education.institution} • {education.year}
+                  </div>
                 </li>
-                <li>Relevant Coursework: {education.coursework}</li>
+                <li className="text-gray-400 transform transition-all duration-300 group-hover:translate-x-1">
+                  <span className="text-red-400/80">Relevant Coursework:</span>
+                  <br />
+                  {education.coursework}
+                </li>
               </ul>
             </div>
 
-            <div className="p-6 rounded-xl border-white/10 border hover:-translate-y-1 hover:shadow-[0_2px_8px_rgba(255,0,0,0.3)] transition-all">
-              <h3 className="text-xl font-bold mb-4"> 💼 Work </h3>
+            <div
+              className="rounded-xl p-6 bg-zinc-900/50 backdrop-blur-sm
+                          border border-zinc-800 hover:border-red-500/30 
+                          hover:shadow-[0_8px_30px_rgb(255,0,0,0.12)]
+                          transition-all duration-300 group"
+            >
+              <h3 className="text-2xl font-bold mb-6 flex items-center gap-3 text-red-100 group-hover:text-red-400 transition-colors">
+                <span className="text-3xl">💼</span> Work
+              </h3>
               <div className="space-y-4 text-gray-300">
                 {experiences.map((exp, index) => (
-                  <div key={index}>
-                    <h4 className="font-semibold">{exp.title}</h4>
-                    <p>{exp.description}</p>
+                  <div
+                    key={index}
+                    className="transform transition-all duration-300 group-hover:translate-x-1"
+                  >
+                    <h4 className="font-semibold text-lg text-red-100/90 mb-1">
+                      {exp.title}
+                    </h4>
+                    <p className="text-gray-400">{exp.description}</p>
                   </div>
                 ))}
               </div>
