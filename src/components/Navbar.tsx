@@ -15,7 +15,8 @@ export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const totalHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
       const progress = (window.scrollY / totalHeight) * 100;
       setScrollProgress(progress);
       setIsScrolled(window.scrollY > 20);
@@ -33,20 +34,26 @@ export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
 
   return (
     <>
-      <nav className={`fixed top-0 w-full z-40 transition-all duration-300 ${
-        isScrolled 
-          ? "bg-[rgba(10,10,10,0.85)] backdrop-blur-lg shadow-lg"
-          : "bg-transparent"
-      }`}>
+      <nav
+        className={`fixed top-0 w-full z-40 transition-all duration-300 ${
+          isScrolled
+            ? "bg-[rgba(10,10,10,0.85)] backdrop-blur-lg shadow-lg"
+            : "bg-transparent"
+        }`}
+      >
         <div className="max-w-5xl mx-auto px-4">
           <div className="flex justify-between items-center h-16">
             <a href="#home" className="font-mono text-xl font-bold">
               spencer
-              <span className="gradient-bg bg-clip-text text-transparent">.kelly</span>
+              <span className="gradient-bg bg-clip-text text-transparent">
+                .kelly
+              </span>
             </a>
 
             <div
-              className={`hamburger-menu relative cursor-pointer z-40 md:hidden ${menuOpen ? 'open' : ''}`}
+              className={`hamburger-menu relative cursor-pointer z-40 md:hidden ${
+                menuOpen ? "open" : ""
+              }`}
               onClick={() => setMenuOpen(!menuOpen)}
             >
               <div className="hamburger-line line-1 mb-1.5"></div>
@@ -69,7 +76,10 @@ export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
         </div>
       </nav>
       <div className="scroll-progress">
-        <div className="scroll-progress-bar" style={{ width: `${scrollProgress}%` }}></div>
+        <div
+          className="scroll-progress-bar"
+          style={{ width: `${scrollProgress}%` }}
+        ></div>
       </div>
     </>
   );
