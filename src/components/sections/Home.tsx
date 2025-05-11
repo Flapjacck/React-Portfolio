@@ -1,40 +1,68 @@
+import { useEffect, useState } from "react";
 import { RevealOnScroll } from "../RevealOnScroll";
 import { SvgRow } from "../SvgRow";
 
 export const Home = () => {
+  const [displayText, setDisplayText] = useState("");
+  const fullText = "WLU CS Student & Full Stack Developer";
+
+  useEffect(() => {
+    // Delay the typing animation by 2 seconds (2000ms) to match the welcome screen
+    const startDelay = setTimeout(() => {
+      let index = 0;
+      const typingInterval = setInterval(() => {
+        setDisplayText(fullText.substring(0, index));
+        index++;
+        if (index > fullText.length) {
+          clearInterval(typingInterval);
+        }
+      }, 100);
+
+      return () => clearInterval(typingInterval);
+    }, 2000);
+
+    return () => clearTimeout(startDelay);
+  }, []);
+
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center relative"
+      className="min-h-screen relative flex items-center justify-center"
     >
-      <RevealOnScroll>
-        <div className="text-center z-10 px-4">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 gradient-bg bg-clip-text text-transparent leading-tight">
-            Hey, I'm Spencer Kelly
-          </h1>
+      <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center pt-20">
+        <RevealOnScroll>
+          <div className="text-center">
+            <h1 className="text-5xl md:text-7xl font-bold gradient-bg bg-clip-text text-transparent leading-tight mb-6">
+              Hey, I'm Spencer Kelly
+            </h1>
 
-          <SvgRow />
+            <div className="text-xl md:text-2xl text-gray-400 h-8 font-mono mb-8">
+              {displayText}
+              <span className="animate-blink">|</span>
+            </div>
 
-          <div className="flex justify-center space-x-4">
-            <a
-              href="#about"
-              className="border border-red-500/50 text-red-500 py-3 px-6 rounded font-medium transition-all duration-200 
-             hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(59, 130, 246, 0.2)] hover:bg-red-500/10"
-            >
-              About Me
-            </a>
+            <SvgRow />
 
-            <a
-              href="#projects"
-              className="border border-red-500/50 text-red-500 py-3 px-6 rounded font-medium transition-all duration-200 
-              hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(59, 130, 246, 0.2)] hover:bg-red-500/10 inline-block"
-            >
-              {" "}
-              View Projects
-            </a>
+            <div className="flex justify-center space-x-4 mt-8">
+              <a
+                href="#about"
+                className="border border-red-500/50 text-red-500 py-3 px-6 rounded font-medium transition-all duration-200 
+               hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(59, 130, 246, 0.2)] hover:bg-red-500/10"
+              >
+                About Me
+              </a>
+
+              <a
+                href="#projects"
+                className="border border-red-500/50 text-red-500 py-3 px-6 rounded font-medium transition-all duration-200 
+                hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(59, 130, 246, 0.2)] hover:bg-red-500/10 inline-block"
+              >
+                View Projects
+              </a>
+            </div>
           </div>
-        </div>
-      </RevealOnScroll>
+        </RevealOnScroll>
+      </div>
     </section>
   );
 };

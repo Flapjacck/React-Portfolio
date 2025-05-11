@@ -5,14 +5,21 @@ interface SvgIconProps {
 }
 
 const SvgIcon = ({ href, svgPath, alt }: SvgIconProps) => (
-  <a href={href} target="_blank" rel="noopener noreferrer" className="mx-2">
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="group relative p-3 mx-2"
+  >
+    <div className="absolute inset-0 bg-red-500/10 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300 ease-out" />
+    <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 to-red-600/20 rounded-lg opacity-0 group-hover:opacity-100 blur-sm transition-opacity duration-300" />
     <svg
       width="50"
       height="50"
       viewBox="0 0 50 50"
       fill="currentColor"
-      className="w-15 h-15 text-red-500 hover:text-red-400 transition-all duration-200 
-             hover:-translate-y-0.5"
+      className="w-15 h-15 relative z-10 text-red-500 transition-all duration-300 ease-out
+               group-hover:text-red-400 group-hover:scale-110 group-hover:rotate-3"
       aria-label={alt}
     >
       <path d={svgPath} />
@@ -43,7 +50,7 @@ export const SvgRow = () => {
   ];
 
   return (
-    <div className="flex justify-center items-center space-x-4 mb-8">
+    <div className="flex justify-center items-center space-x-2 mb-8">
       {icons.map((icon, index) => (
         <SvgIcon key={index} {...icon} />
       ))}
