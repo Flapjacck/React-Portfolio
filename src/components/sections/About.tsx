@@ -20,6 +20,7 @@ const frontendSkills: string[] = [
   "React",
   "Tailwind",
   "Vite",
+  "Vercel",
 ];
 
 const backendSkills: string[] = [
@@ -30,6 +31,13 @@ const backendSkills: string[] = [
   "Azure",
   "Git",
   "C/C++",
+  "SQL",
+  "FastAPI",
+  "Docker",
+  "Express JS",
+  "Linux",
+  "Render",
+  "Pytorch",
 ];
 
 const education: EducationProps = {
