@@ -53,6 +53,38 @@ body {
       background-position: 0% 50%;
     }
   }
+
+  /* Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #EC0B43 #27272a;
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #27272a;
+    border-radius: 8px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: #EC0B43;
+    border: 3px solid #27272a;
+    border-radius: 8px;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: #ce1313;
+  }
+
+  /* For horizontal scrollbars */
+  *::-webkit-scrollbar-corner {
+    background: #27272a;
+  }
 }
 
 .reveal {
