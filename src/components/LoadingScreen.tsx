@@ -9,6 +9,16 @@ export const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
   const fullText = "<Welcome! />";
 
   useEffect(() => {
+    // Add the class to html element
+    document.documentElement.classList.add("loading-active");
+
+    return () => {
+      // Remove the class when component unmounts
+      document.documentElement.classList.remove("loading-active");
+    };
+  }, []);
+
+  useEffect(() => {
     let index = 0;
     const interval = setInterval(() => {
       setText(fullText.substring(0, index));
@@ -25,9 +35,8 @@ export const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
 
     return () => clearInterval(interval);
   }, [onComplete]);
-
   return (
-    <div className="fixed inset-0 z-50 bg-zinc-800 text-orange-100 flex flex-col items-center justify-center">
+    <div className="fixed inset-0 z-50 bg-zinc-800 text-orange-100 flex flex-col items-center justify-center [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
       <div className="mb-4 text-4xl font-mono font-bold">
         {text} <span className="animate-blink ml-1"> | </span>
       </div>

@@ -9,6 +9,14 @@ body {
   color: #f3f4f6;
 }
 
+/* Loading state styles */
+html.loading-active {
+  overflow: hidden !important;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+}
+
 @layer utilities {
   @keyframes blink {
     0%, 100% {

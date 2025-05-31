@@ -34,15 +34,12 @@ export const Home = () => {
           <div className="text-center">
             <h1 className="text-5xl md:text-7xl font-bold gradient-bg bg-clip-text text-transparent leading-tight mb-6">
               Hey, I'm Spencer Kelly
-            </h1>
-
-            <div className="text-xl md:text-2xl text-gray-400 h-8 font-mono mb-8">
+            </h1>{" "}
+            <div className="text-base md:text-2xl text-gray-400 h-8 font-mono mb-8">
               {displayText}
               <span className="animate-blink">|</span>
             </div>
-
             <SvgRow />
-
             <div className="flex justify-center space-x-4 mt-8">
               <a
                 href="#about"
