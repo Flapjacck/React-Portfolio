@@ -50,9 +50,9 @@ const education: EducationProps = {
 
 const experiences: ExperienceProps[] = [
   {
-    title: "Seeking Internship Opportunities",
+    title: "Open to Opportunities",
     description:
-      "Looking for a summer internship to apply my skills and gain experience in software development.",
+      "Currently open to internship roles and computer science related experiences to apply my skills and continue growing as a developer.",
   },
   {
     title: "",

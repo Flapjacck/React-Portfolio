@@ -62,6 +62,15 @@ const projects: ProjectProps[] = [
       "https://raw.githubusercontent.com/Flapjacck/Solution-Stash/refs/heads/main/images/solutionlogo.png",
   },
   {
+    title: "SKOS",
+    description:
+      "A bare-bones operating system kernel built from scratch in C and Assembly for x86 architecture.",
+    technologies: ["C", "Assembly", "x86", "NASM", "GCC", "QEMU"],
+    link: "https://github.com/Flapjacck/skos",
+    image:
+      "https://seeklogo.com/images/L/linux-tux-logo-8C1B4FB97E-seeklogo.com.png",
+  },
+  {
     title: "TBA....",
     description: "Keep a lookout for my next project!",
     technologies: ["TBA"],
