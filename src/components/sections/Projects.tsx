@@ -85,16 +85,18 @@ export const Projects: React.FC = () => {
       id="projects"
       className="min-h-screen flex items-center justify-center py-20"
     >
-      <RevealOnScroll>
-        <div className="max-w-6xl mx-auto px-4">
+      <div className="max-w-6xl mx-auto px-4">
+        <RevealOnScroll>
           <h2 className="text-4xl font-bold mb-12 gradient-bg bg-clip-text text-transparent text-center">
             Featured Projects
           </h2>
+        </RevealOnScroll>
+        <RevealOnScroll stagger={true} staggerDelay={150}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {projects.map((project, index) => (
               <div
                 key={index}
-                className="group relative overflow-hidden rounded-xl bg-zinc-900/50 border border-zinc-800 hover:border-red-500/30 
+                className="stagger-item group relative overflow-hidden rounded-xl bg-zinc-900/50 border border-zinc-800 hover:border-red-500/30 
                          transition-all duration-300 hover:shadow-[0_8px_30px_rgb(255,0,0,0.12)] backdrop-blur-sm"
               >
                 {project.image && (
@@ -153,8 +155,8 @@ export const Projects: React.FC = () => {
               </div>
             ))}
           </div>
-        </div>
-      </RevealOnScroll>
+        </RevealOnScroll>
+      </div>
     </section>
   );
 };
