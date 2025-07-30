@@ -42,15 +42,7 @@ const projects: ProjectProps[] = [
       "Modern portfolio website using TypeScript, React, and Tailwind CSS, showcasing projects, skills, and experience with a sleek, responsive design.",
     technologies: ["React", "TypeScript", "Tailwind"],
     link: "https://github.com/Flapjacck/React-Portfolio",
-    image: "https://i.imgur.com/bObRipr.jpeg",
-  },
-  {
-    title: "WhoDatPokemon",
-    description:
-      "A Pokemon guessing game that challenges users to identify Pokemon. Integrates with PokeNode-TS for Pokemon data and features a responsive design with Tailwind CSS.",
-    technologies: ["React", "TypeScript", "Tailwind", "PokeNode-TS"],
-    link: "https://github.com/Flapjacck/WhoDatPokemon",
-    image: "https://i.imgur.com/cZAGCwC.jpeg",
+    image: "https://i.imgur.com/FUCnYMC.jpeg",
   },
   {
     title: "Solution-Stash",
