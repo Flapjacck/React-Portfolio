@@ -1,4 +1,8 @@
 import { RevealOnScroll } from "../RevealOnScroll";
+import { CardContent, CardFooter } from "../Card";
+import { SkillTag } from "../SkillTag";
+import { AnimatedButton, ArrowRightIcon } from "../AnimatedButton";
+import { FloatingElement } from "../FloatingElement";
 
 interface ProjectProps {
   title: string;
@@ -86,65 +90,69 @@ export const Projects: React.FC = () => {
         <RevealOnScroll stagger={true} staggerDelay={150}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {projects.map((project, index) => (
-              <div
-                key={index}
-                className="stagger-item group relative overflow-hidden rounded-xl bg-zinc-900/50 border border-zinc-800 hover:border-red-500/30 
-                         transition-all duration-300 hover:shadow-[0_8px_30px_rgb(255,0,0,0.12)] backdrop-blur-sm"
-              >
-                {project.image && (
-                  <div className="relative h-48 overflow-hidden">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 to-transparent opacity-60" />
-                  </div>
-                )}
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold mb-3 text-red-100 group-hover:text-red-400 transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-gray-400 mb-4 line-clamp-3 hover:line-clamp-none transition-all duration-200">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.technologies.map((tech, key) => (
-                      <span
-                        key={key}
-                        className="bg-red-500/10 text-red-400 py-1 px-3 rounded-full text-sm 
-                                 hover:bg-red-500/20 hover:shadow-[0_2px_8px_rgba(255,0,0,0.2)] transition-all"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <a
-                      href={project.link}
-                      className="inline-flex items-center text-red-400 hover:text-red-300 transition-colors group-hover:translate-x-1 duration-200"
-                      target="_blank"
-                      rel="noopener noreferrer"
+              <FloatingElement key={index} intensity={0.3}>
+                <div
+                  className="stagger-item group relative rounded-2xl bg-gradient-to-br from-zinc-900/80 to-zinc-900/40 
+                           border border-zinc-800/50 hover:border-red-500/50 backdrop-blur-lg
+                           transition-all duration-500
+                           hover:shadow-[0_20px_50px_rgba(239,68,68,0.15),0_0_0_1px_rgba(239,68,68,0.1)]
+                           before:absolute before:inset-0 before:bg-gradient-to-br before:from-red-500/5 before:to-transparent 
+                           before:opacity-0 before:transition-opacity before:duration-500 hover:before:opacity-100"
+                >
+                  {project.image && (
+                    <div className="relative h-48 overflow-hidden rounded-t-2xl">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover object-center transform group-hover:scale-110 
+                               transition-transform duration-700 ease-out"
+                      />
+                      <div
+                        className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/20 to-transparent 
+                                  group-hover:from-zinc-900/90 transition-all duration-500"
+                      />
+                    </div>
+                  )}
+                  <CardContent className="p-6">
+                    <div
+                      className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-red-500/50 to-transparent 
+                                opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100"
+                    ></div>
+
+                    <h3
+                      className="text-2xl font-bold mb-3 text-red-100 group-hover:text-red-300 
+                               transition-all duration-300 group-hover:translate-x-1"
                     >
-                      View Project
-                      <svg
-                        className="w-4 h-4 ml-2"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M14 5l7 7m0 0l-7 7m7-7H3"
-                        />
-                      </svg>
-                    </a>
-                  </div>
+                      {project.title}
+                    </h3>
+
+                    <p
+                      className="text-gray-400 mb-4 line-clamp-3 hover:line-clamp-none 
+                              transition-all duration-300 group-hover:text-gray-300 leading-relaxed"
+                    >
+                      {project.description}
+                    </p>
+
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {project.technologies.map((tech, key) => (
+                        <SkillTag key={key}>{tech}</SkillTag>
+                      ))}
+                    </div>
+
+                    <CardFooter className="pt-4 border-t border-zinc-800/50 group-hover:border-red-500/20 transition-colors duration-300">
+                      <div className="flex justify-start items-center pr-12 py-2">
+                        <AnimatedButton
+                          href={project.link}
+                          external={true}
+                          icon={<ArrowRightIcon />}
+                        >
+                          View Project
+                        </AnimatedButton>
+                      </div>
+                    </CardFooter>
+                  </CardContent>
                 </div>
-              </div>
+              </FloatingElement>
             ))}
           </div>
         </RevealOnScroll>
