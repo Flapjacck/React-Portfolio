@@ -75,9 +75,9 @@ export const ParallaxCard = ({
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
 
-      // Use the smoother animation style from FloatingElement
-      const deltaX = (e.clientX - centerX) * 0.5 * 0.01;
-      const deltaY = (e.clientY - centerY) * 0.5 * 0.01;
+      // Use depth prop for customizable intensity
+      const deltaX = (e.clientX - centerX) * (depth * 0.01) * 0.01;
+      const deltaY = (e.clientY - centerY) * (depth * 0.01) * 0.01;
 
       card.style.transform = `translate(${deltaX}px, ${deltaY}px) perspective(1000px) rotateX(${-deltaY}deg) rotateY(${deltaX}deg)`;
     };
