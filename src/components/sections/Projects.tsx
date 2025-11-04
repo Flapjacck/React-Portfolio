@@ -64,7 +64,16 @@ const projects: ProjectProps[] = [
     technologies: ["C", "Assembly", "x86", "NASM", "GCC", "QEMU"],
     link: "https://github.com/Flapjacck/skos",
     image:
-      "https://seeklogo.com/images/L/linux-tux-logo-8C1B4FB97E-seeklogo.com.png",
+      "https://upload.wikimedia.org/wikipedia/commons/1/19/C_Logo.png",
+  },
+  {
+    title: "ScheduleApp",
+    description:
+      "Full-stack MERN application built with a 9-member Agile team to streamline applicant tracking and interview scheduling for 100+ club members, featuring clean TypeScript code and scalable architecture.",
+    technologies: ["React", "Node.js", "MongoDB", "TypeScript", "Express"],
+    link: "https://github.com/LaurierCS/ScheduleApp",
+    image:
+      "https://opengraph.githubassets.com/1/LaurierCS/ScheduleApp",
   },
   {
     title: "TBA....",
