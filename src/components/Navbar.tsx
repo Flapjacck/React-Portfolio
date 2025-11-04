@@ -3,15 +3,27 @@ import { useEffect, useState } from "react";
 interface NavbarProps {
   menuOpen: boolean;
   setMenuOpen: (open: boolean) => void;
+  isLoaded?: boolean;
 }
 
-export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
+export const Navbar = ({ menuOpen, setMenuOpen, isLoaded }: NavbarProps) => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
   }, [menuOpen]);
+
+  // animate navbar in slightly after load so the title can take focus
+  useEffect(() => {
+    if (isLoaded) {
+      const t = setTimeout(() => setVisible(true), 600);
+      return () => clearTimeout(t);
+    } else {
+      setVisible(false);
+    }
+  }, [isLoaded]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,11 +47,11 @@ export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
   return (
     <>
       <nav
-        className={`fixed top-0 w-full z-40 transition-all duration-300 ${
+        className={`fixed top-0 w-full z-40 transition-all duration-500 ${
           isScrolled
             ? "bg-[rgba(10,10,10,0.85)] backdrop-blur-lg shadow-lg"
             : "bg-transparent"
-        }`}
+        } ${visible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-3 pointer-events-none"}`}
       >
         <div className="max-w-5xl mx-auto px-4">
           <div className="flex justify-between items-center h-16">

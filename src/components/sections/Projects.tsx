@@ -203,9 +203,10 @@ export const Projects: React.FC = () => {
           </h2>
         </RevealOnScroll>
 
-        <div className="relative">
-          {/* Track */}
-          <div
+        <RevealOnScroll>
+          <div className="relative">
+            {/* Track */}
+            <div
             ref={trackRef}
             className={`flex gap-6 items-stretch w-full overflow-hidden rounded-2xl`}
             onMouseEnter={() => {
@@ -274,16 +275,17 @@ export const Projects: React.FC = () => {
                 </div>
               ))}
             </div>
-          </div>
+            </div>
 
-          {/* Controls */}
-          <button onClick={prev} aria-label="Previous" className="absolute left-4 top-1/2 -translate-y-1/2 bg-zinc-800/80 hover:bg-zinc-700/80 text-white p-2 rounded-full transition-colors duration-300 z-20">
-            ‹
-          </button>
-          <button onClick={next} aria-label="Next" className="absolute right-4 top-1/2 -translate-y-1/2 bg-zinc-800/80 hover:bg-zinc-700/80 text-white p-2 rounded-full transition-colors duration-300 z-20">
-            ›
-          </button>
-        </div>
+            {/* Controls */}
+            <button onClick={prev} aria-label="Previous" className="absolute left-4 top-1/2 -translate-y-1/2 bg-zinc-800/80 hover:bg-zinc-700/80 text-white p-2 rounded-full transition-colors duration-300 z-20">
+              ‹
+            </button>
+            <button onClick={next} aria-label="Next" className="absolute right-4 top-1/2 -translate-y-1/2 bg-zinc-800/80 hover:bg-zinc-700/80 text-white p-2 rounded-full transition-colors duration-300 z-20">
+              ›
+            </button>
+          </div>
+        </RevealOnScroll>
       </div>
     </section>
   );
