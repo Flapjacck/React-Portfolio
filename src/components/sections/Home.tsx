@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { RevealOnScroll } from "../RevealOnScroll";
 import { SvgRow } from "../SvgRow";
+import { FileText } from "lucide-react";
 
 export const Home = () => {
   const [displayText, setDisplayText] = useState("");
@@ -39,7 +40,9 @@ export const Home = () => {
               {displayText}
               <span className="animate-blink">|</span>
             </div>
+            
             <SvgRow />
+            
             <div className="flex justify-center space-x-4 mt-8">
               <a
                 href="#about"
@@ -55,6 +58,22 @@ export const Home = () => {
                 hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(59, 130, 246, 0.2)] hover:bg-red-500/10 inline-block"
               >
                 View Projects
+              </a>
+            </div>
+            
+            {/* Resume Button */}
+            <div className="flex justify-center mt-4">
+              <a
+                href="/Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded text-sm font-medium
+                          border border-red-500/50 text-red-500 bg-transparent
+                          transition-all duration-200
+                          hover:-translate-y-0.5 hover:bg-red-500/10"
+              >
+                <FileText className="w-4 h-4" />
+                <span>Resume</span>
               </a>
             </div>
           </div>
