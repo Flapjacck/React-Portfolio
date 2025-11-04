@@ -1,3 +1,4 @@
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { RevealOnScroll } from "../RevealOnScroll";
 import { CardContent, CardFooter } from "../Card";
 import { SkillTag } from "../SkillTag";
@@ -9,7 +10,7 @@ interface ProjectProps {
   description: string;
   technologies: string[];
   link: string;
-  image?: string; // Optional image URL for the project
+  image?: string;
 }
 
 const projects: ProjectProps[] = [
@@ -75,96 +76,214 @@ const projects: ProjectProps[] = [
     image:
       "https://opengraph.githubassets.com/1/LaurierCS/ScheduleApp",
   },
-  {
-    title: "TBA....",
-    description: "Keep a lookout for my next project!",
-    technologies: ["TBA"],
-    link: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    image: "",
-  },
 ];
 
+// Helper: generate clones on both ends to create the infinite effect
+const makeBuffer = (arr: ProjectProps[], n: number) => {
+  const left = arr.slice(-n);
+  const right = arr.slice(0, n);
+  return [...left, ...arr, ...right];
+};
+
 export const Projects: React.FC = () => {
+  // visibleCards: 1 on small screens, 3 on md+
+  const [visibleCards, setVisibleCards] = useState<number>(
+    typeof window !== "undefined" && window.innerWidth < 768 ? 1 : 3
+  );
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [containerWidth, setContainerWidth] = useState<number>(typeof window !== "undefined" ? window.innerWidth : 0);
+  const [index, setIndex] = useState<number>(visibleCards); // start at first real item in buffered array
+  const [isTransitioning, setIsTransitioning] = useState<boolean>(true);
+
+  // recompute duplicated list when visibleCards changes
+  const list = useMemo(() => makeBuffer(projects, visibleCards), [visibleCards]);
+
+  // layout in pixels to account for gaps accurately
+  const GAP_PX = 24; // corresponds to tailwind gap-6 = 1.5rem = 24px
+
+  // refs
+  const trackRef = useRef<HTMLDivElement | null>(null);
+  const autoplayRef = useRef<number | null>(null);
+
+  // update visibleCards on resize
+  useEffect(() => {
+    const onResize = () => {
+      const v = window.innerWidth < 768 ? 1 : 3;
+      setVisibleCards(v);
+    };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  // measure container width for pixel calculations
+  useEffect(() => {
+    const measure = () => {
+      const w = containerRef.current ? containerRef.current.clientWidth : window.innerWidth;
+      setContainerWidth(w);
+    };
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, []);
+
+  // ensure index resets when visibleCards changes (start at first real)
+  useEffect(() => {
+    setIndex(visibleCards);
+    // briefly disable transition while jumping to starting index
+    setIsTransitioning(false);
+    // re-enable next tick
+    const t = setTimeout(() => setIsTransitioning(true), 20);
+    return () => clearTimeout(t);
+  }, [visibleCards]);
+
+  // autoplay
+  useEffect(() => {
+    const start = () => {
+      stop();
+      autoplayRef.current = window.setInterval(() => {
+        setIndex((i) => i + 1);
+      }, 10000);
+    };
+    const stop = () => {
+      if (autoplayRef.current) {
+        window.clearInterval(autoplayRef.current);
+        autoplayRef.current = null;
+      }
+    };
+    start();
+    return stop;
+  }, [visibleCards]);
+
+  // handle transition end: if we've moved into the cloned buffers, jump without animation
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    const handleTransitionEnd = () => {
+      // when index reaches right buffer end
+      const total = list.length;
+      const firstReal = visibleCards;
+      const lastReal = total - visibleCards - 1;
+      if (index > lastReal) {
+        // jumped past end, reset back to equivalent real item
+        const to = firstReal + ((index - firstReal) % (lastReal - firstReal + 1));
+        setIsTransitioning(false);
+        setIndex(to);
+        // re-enable transition on next tick
+        requestAnimationFrame(() => requestAnimationFrame(() => setIsTransitioning(true)));
+      } else if (index < firstReal) {
+        // jumped before start, reset to equivalent from end
+        const len = lastReal - firstReal + 1;
+        const to = lastReal - ((firstReal - index - 1) % len);
+        setIsTransitioning(false);
+        setIndex(to);
+        requestAnimationFrame(() => requestAnimationFrame(() => setIsTransitioning(true)));
+      }
+    };
+    track.addEventListener("transitionend", handleTransitionEnd);
+    return () => track.removeEventListener("transitionend", handleTransitionEnd);
+  }, [index, list.length, visibleCards]);
+
+  // manual handlers
+  const next = () => setIndex((i) => i + 1);
+  const prev = () => setIndex((i) => i - 1);
+
+  // compute pixel sizes and translate to account for gap precisely
+  const centerOffset = (visibleCards - 1) / 2; // 0 for 1, 1 for 3
+  const cardWidthPx = Math.max(0, (containerWidth - (visibleCards - 1) * GAP_PX) / visibleCards);
+  const itemStride = cardWidthPx + GAP_PX; // distance between starts of adjacent cards
+  const translatePx = -(index - centerOffset) * itemStride;
+  const trackInnerWidthPx = list.length * cardWidthPx + Math.max(0, list.length - 1) * GAP_PX;
+
   return (
-    <section
-      id="projects"
-      className="min-h-screen flex items-center justify-center py-20"
-    >
-      <div className="max-w-6xl mx-auto px-4">
+    <section id="projects" className="py-8 w-full">
+      <div className="w-full">
         <RevealOnScroll>
-          <h2 className="text-4xl font-bold mb-12 gradient-bg bg-clip-text text-transparent text-center">
-            Featured Projects
+          <h2 className="text-4xl font-bold mb-8 gradient-bg bg-clip-text text-transparent text-center">
+            Projects
           </h2>
         </RevealOnScroll>
-        <RevealOnScroll stagger={true} staggerDelay={150}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {projects.map((project, index) => (
-              <FloatingElement key={index} intensity={0.3}>
+
+        <div className="relative">
+          {/* Track */}
+          <div
+            ref={trackRef}
+            className={`flex gap-6 items-stretch w-full overflow-hidden rounded-2xl`}
+            onMouseEnter={() => {
+              if (autoplayRef.current) {
+                window.clearInterval(autoplayRef.current);
+                autoplayRef.current = null;
+              }
+            }}
+            onMouseLeave={() => {
+              if (!autoplayRef.current) {
+                autoplayRef.current = window.setInterval(() => setIndex((i) => i + 1), 10000);
+              }
+            }}
+            onTouchStart={() => {
+              if (autoplayRef.current) {
+                window.clearInterval(autoplayRef.current);
+                autoplayRef.current = null;
+              }
+            }}
+            onTouchEnd={() => {
+              if (!autoplayRef.current) {
+                autoplayRef.current = window.setInterval(() => setIndex((i) => i + 1), 10000);
+              }
+            }}
+          >
+            {/* inner sliding track */}
+            <div
+              className={`flex items-stretch ${isTransitioning ? "transition-transform duration-700 ease-in-out" : ""}`}
+              style={{
+                width: trackInnerWidthPx ? `${trackInnerWidthPx}px` : undefined,
+                transform: `translateX(${translatePx}px)`,
+                gap: `${GAP_PX}px`,
+              }}
+            >
+              {list.map((proj, i) => (
                 <div
-                  className="stagger-item group relative rounded-2xl bg-gradient-to-br from-zinc-900/80 to-zinc-900/40 
-                           border border-zinc-800/50 hover:border-red-500/50 backdrop-blur-lg
-                           transition-all duration-500
-                           hover:shadow-[0_20px_50px_rgba(239,68,68,0.15),0_0_0_1px_rgba(239,68,68,0.1)]
-                           before:absolute before:inset-0 before:bg-gradient-to-br before:from-red-500/5 before:to-transparent 
-                           before:opacity-0 before:transition-opacity before:duration-500 hover:before:opacity-100"
+                  key={`${proj.title}-${i}`}
+                  className={`flex-shrink-0`} // width set inline
+                  style={{ width: `${cardWidthPx}px` }}
                 >
-                  {project.image && (
-                    <div className="relative h-48 overflow-hidden rounded-t-2xl">
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-full object-cover object-center transform group-hover:scale-110 
-                               transition-transform duration-700 ease-out"
-                      />
-                      <div
-                        className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/20 to-transparent 
-                                  group-hover:from-zinc-900/90 transition-all duration-500"
-                      />
+                  <FloatingElement intensity={0.3}>
+                    {/* removed mx-3 since gap on the track handles spacing; extra margin caused off-center layout */}
+                    <div className="group relative h-[420px] md:h-[520px] rounded-2xl bg-gradient-to-br from-zinc-900/80 to-zinc-900/40 border border-zinc-800/50 backdrop-blur-lg transition-all duration-500 hover:shadow-[0_20px_50px_rgba(239,68,68,0.12)]">
+                      {proj.image && (
+                        <div className="relative h-40 md:h-56 overflow-hidden rounded-t-2xl">
+                          <img loading="lazy" decoding="async" src={proj.image} alt={proj.title} className="w-full h-full object-cover object-center" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/20 to-transparent" />
+                        </div>
+                      )}
+                      <CardContent className="p-5 flex-1 flex flex-col">
+                        <h3 className="text-xl md:text-2xl font-bold mb-2 text-red-100">{proj.title}</h3>
+                        <p className="text-gray-400 text-sm md:text-base mb-3 line-clamp-3">{proj.description}</p>
+                        <div className="flex flex-wrap gap-2 mb-4">
+                          {proj.technologies.map((t, k) => (
+                            <SkillTag key={k}>{t}</SkillTag>
+                          ))}
+                        </div>
+                        <CardFooter className="pt-3 border-t border-zinc-800/50 mt-auto">
+                          <AnimatedButton href={proj.link} external icon={<ArrowRightIcon />}>
+                            View Project
+                          </AnimatedButton>
+                        </CardFooter>
+                      </CardContent>
                     </div>
-                  )}
-                  <CardContent className="p-6">
-                    <div
-                      className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-red-500/50 to-transparent 
-                                opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100"
-                    ></div>
-
-                    <h3
-                      className="text-2xl font-bold mb-3 text-red-100 group-hover:text-red-300 
-                               transition-all duration-300 group-hover:translate-x-1"
-                    >
-                      {project.title}
-                    </h3>
-
-                    <p
-                      className="text-gray-400 mb-4 line-clamp-3 hover:line-clamp-none 
-                              transition-all duration-300 group-hover:text-gray-300 leading-relaxed"
-                    >
-                      {project.description}
-                    </p>
-
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {project.technologies.map((tech, key) => (
-                        <SkillTag key={key}>{tech}</SkillTag>
-                      ))}
-                    </div>
-
-                    <CardFooter className="pt-4 border-t border-zinc-800/50 group-hover:border-red-500/20 transition-colors duration-300">
-                      <div className="flex justify-start items-center pr-12 py-2">
-                        <AnimatedButton
-                          href={project.link}
-                          external={true}
-                          icon={<ArrowRightIcon />}
-                        >
-                          View Project
-                        </AnimatedButton>
-                      </div>
-                    </CardFooter>
-                  </CardContent>
+                  </FloatingElement>
                 </div>
-              </FloatingElement>
-            ))}
+              ))}
+            </div>
           </div>
-        </RevealOnScroll>
+
+          {/* Controls */}
+          <button onClick={prev} aria-label="Previous" className="absolute left-4 top-1/2 -translate-y-1/2 bg-zinc-800/80 hover:bg-zinc-700/80 text-white p-2 rounded-full transition-colors duration-300 z-20">
+            ‹
+          </button>
+          <button onClick={next} aria-label="Next" className="absolute right-4 top-1/2 -translate-y-1/2 bg-zinc-800/80 hover:bg-zinc-700/80 text-white p-2 rounded-full transition-colors duration-300 z-20">
+            ›
+          </button>
+        </div>
       </div>
     </section>
   );
