@@ -55,9 +55,9 @@ export const Navbar = ({ menuOpen, setMenuOpen, isLoaded }: NavbarProps) => {
       >
         <div className="max-w-5xl mx-auto px-4">
           <div className="flex justify-between items-center h-16">
-            <a href="#home" className="font-mono text-xl font-bold">
+              <a href="#home" className="font-mono text-xl font-bold">
               spencer
-              <span className="gradient-bg bg-clip-text text-transparent">
+              <span className="gradient-bg gradient-glow bg-clip-text text-transparent">
                 .kelly
               </span>
             </a>

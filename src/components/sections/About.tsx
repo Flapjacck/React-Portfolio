@@ -278,7 +278,7 @@ export const About: React.FC = () => {
       <RevealOnScroll>
         <div className="max-w-6xl mx-auto px-4">
           {/* Section Title */}
-          <h2 className="text-4xl font-bold mb-12 gradient-bg bg-clip-text text-transparent text-center">
+          <h2 className="text-4xl font-bold mb-12 gradient-bg gradient-glow bg-clip-text text-transparent text-center">
             About Me
           </h2>
 
@@ -318,26 +318,26 @@ export const About: React.FC = () => {
                       width="192"
                       height="192"
                     />
+                    </div>
                   </div>
-                </div>
 
-                {/* Bio Text */}
-                <div className="flex-1 text-center md:text-left">
-                  <p className="text-gray-300 text-lg leading-relaxed group-hover:text-gray-200 transition-colors duration-300 mb-4">
-                    Third year student at Wilfrid Laurier University exploring
-                    the ways computer science can change our world. My love and
-                    passion for everything tech motivates me throughout this
-                    journey.
-                  </p>
-                  
-                  {/* Open to Opportunities Badge */}
-                  <div className="bg-green-500/10 border border-green-500/30 rounded-lg p-3 hover:bg-green-500/20 transition-all duration-300">
-                    <p className="text-green-400 text-sm font-medium text-center md:text-left">
-                      Open to internship opportunities and computer science related experiences
+                  {/* Bio Text */}
+                  <div className="flex-1 text-center md:text-left">
+                    <p className="text-gray-300 text-lg leading-relaxed group-hover:text-gray-200 transition-colors duration-300 mb-4">
+                      Third year student at Wilfrid Laurier University exploring
+                      the ways computer science can change our world. My love and
+                      passion for everything tech motivates me throughout this
+                      journey.
                     </p>
+                  
+                    {/* Open to Opportunities Badge */}
+                    <div className="bg-green-500/10 border border-green-500/30 rounded-lg p-3 hover:bg-green-500/20 transition-all duration-300">
+                      <p className="text-green-400 text-sm font-medium text-center md:text-left">
+                        Open to internship opportunities and computer science related experiences
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
 
               {/* ===== TECHNICAL SKILLS SECTION ===== */}
               <div className="mt-8">
@@ -592,7 +592,7 @@ export const About: React.FC = () => {
                         {allExperiences.map((exp, index) => (
                           <div
                             key={index}
-                            className={`absolute top-0 left-0 right-0 transition-all duration-500 ease-in-out
+                            className={`absolute inset-0 transition-all duration-500 ease-in-out
                                       ${
                                         index === currentWorkIndex
                                           ? "opacity-100 translate-y-0 z-10"
@@ -673,7 +673,7 @@ const WorkExperienceCard: React.FC<WorkExperienceCardProps> = ({
 }) => {
   return (
     <div
-      className={`rounded-lg p-3 sm:p-4 transition-all duration-300 hover:scale-[1.02] flex flex-col
+      className={`rounded-lg p-4 sm:p-4 transition-all duration-300 hover:scale-[1.02] flex flex-col h-full
                   ${
                     isCurrent
                       ? "bg-red-500/10 border border-red-500/30 hover:bg-red-500/15 hover:border-red-500/50"
@@ -697,26 +697,25 @@ const WorkExperienceCard: React.FC<WorkExperienceCardProps> = ({
         </div>
 
         {/* Experience Details */}
-        <div className="flex-1 min-w-0">
+        <div className="flex-1 min-w-0 flex flex-col justify-between">
           <div className="flex items-start justify-between gap-2 mb-1">
             <h4
-              className={`font-semibold text-sm sm:text-base ${
+              className={`font-semibold text-base sm:text-base ${
                 isCurrent ? "text-red-200" : "text-gray-200"
               }`}
             >
               {experience.company}
             </h4>
           </div>
+          <div className="text-sm sm:text-sm text-gray-400 mb-1">{experience.role}</div>
 
-          <div className="text-xs sm:text-sm text-gray-400 mb-1">{experience.role}</div>
-
-          <div className="text-[10px] sm:text-xs text-gray-500 mb-2 sm:mb-3">
+          <div className="text-sm sm:text-xs text-gray-500 mb-2 sm:mb-3">
             {experience.location} • {experience.period}
           </div>
 
           {/* Description - only shown if present */}
           {experience.description && (
-            <p className="text-xs sm:text-sm text-gray-400 leading-relaxed">
+            <p className="text-sm sm:text-sm text-gray-400 leading-relaxed">
               {experience.description}
             </p>
           )}

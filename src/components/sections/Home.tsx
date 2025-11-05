@@ -43,7 +43,7 @@ export const Home = ({ isLoaded }: HomeProps) => {
       <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
         <div className="text-center space-y-3 md:space-y-4">
           <h1
-            className={`text-5xl md:text-7xl font-bold gradient-bg bg-clip-text text-transparent leading-tight transition-all duration-700 ${
+            className={`text-5xl md:text-7xl font-bold gradient-bg gradient-glow bg-clip-text text-transparent leading-tight transition-all duration-700 ${
               showTitle ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-2 scale-95"
             }`}
           >
@@ -66,14 +66,14 @@ export const Home = ({ isLoaded }: HomeProps) => {
             <div className="flex flex-wrap justify-center items-center gap-3 mt-2">
               <a
                 href="#about"
-                className="border border-red-500/50 text-red-500 py-2 px-5 rounded font-medium transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(59,130,246,0.2)] hover:bg-red-500/10 inline-flex items-center"
+                className="border border-red-500/50 text-red-500 py-2 px-5 rounded font-medium transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(239,68,68,0.2)] hover:bg-red-500/10 inline-flex items-center"
               >
                 About Me
               </a>
 
               <a
                 href="#projects"
-                className="border border-red-500/50 text-red-500 py-2 px-5 rounded font-medium transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(59,130,246,0.2)] hover:bg-red-500/10 inline-flex items-center"
+                className="border border-red-500/50 text-red-500 py-2 px-5 rounded font-medium transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(239,68,68,0.2)] hover:bg-red-500/10 inline-flex items-center"
               >
                 View Projects
               </a>
@@ -82,7 +82,7 @@ export const Home = ({ isLoaded }: HomeProps) => {
                 href="/Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="border border-red-500/50 text-red-500 py-2 px-5 rounded font-medium transition-all duration-200 hover:-translate-y-0.5 hover:bg-red-500/10 inline-flex items-center gap-2"
+                className="border border-red-500/50 text-red-500 py-2 px-5 rounded font-medium transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(239,68,68,0.2)] hover:bg-red-500/10 inline-flex items-center gap-2"
               >
                 <FileText className="w-4 h-4" />
                 <span>Resume</span>

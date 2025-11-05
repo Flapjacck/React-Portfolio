@@ -68,6 +68,37 @@ html.loading-active {
     animation: gradient 7s ease infinite;
   }
 
+  /* Subtle outer glow that matches the gradient used for text fills.
+     Uses layered text-shadow with same color stops in low opacity so the
+     glow is visually pleasing but not overpowering. Works with
+     bg-clip-text / text-transparent because text-shadow renders even
+     when the text color is transparent. */
+  .gradient-glow {
+    text-shadow:
+      0 0 6px rgba(236, 11, 67, 0.28),
+      0 0 12px rgba(206, 81, 143, 0.20),
+      0 0 18px rgba(206, 19, 19, 0.14),
+      0 0 28px rgba(228, 104, 104, 0.10);
+    /* a tiny drop-shadow to smooth the glow edges */
+    filter: drop-shadow(0 0 6px rgba(236, 11, 67, 0.08));
+  }
+
+  /* Glow for SVG shapes/icons. Uses multiple drop-shadow layers to emulate
+     a soft, multi-colored glow similar to the text gradient glow. Works on
+     <svg> elements and inherited shapes (paths). */
+  .svg-gradient-glow {
+    filter:
+      drop-shadow(0 0 6px rgba(236, 11, 67, 0.28)) drop-shadow(0 0 12px rgba(206, 81, 143, 0.20)) drop-shadow(0 0 18px rgba(206, 19, 19, 0.14)) drop-shadow(0 0 28px rgba(228, 104, 104, 0.10));
+    transition: filter 200ms ease, transform 200ms ease;
+  }
+
+  /* Slightly stronger glow on hover to match existing hover animations */
+  .svg-gradient-glow.group-hover\:svg-glow:hover,
+  .group:hover .svg-gradient-glow {
+    filter:
+      drop-shadow(0 0 8px rgba(236, 11, 67, 0.36)) drop-shadow(0 0 16px rgba(206, 81, 143, 0.28)) drop-shadow(0 0 24px rgba(206, 19, 19, 0.20)) drop-shadow(0 0 36px rgba(228, 104, 104, 0.14));
+  }
+
   @keyframes gradient {
     0% {
       background-position: 0% 50%;

@@ -18,7 +18,7 @@ const SvgIcon = ({ href, svgPath, alt }: SvgIconProps) => (
       height="50"
       viewBox="0 0 50 50"
       fill="currentColor"
-      className="w-15 h-15 relative z-10 text-red-500 transition-all duration-300 ease-out
+      className="w-15 h-15 relative z-10 text-red-500 transition-all duration-300 ease-out svg-gradient-glow
                group-hover:text-red-400 group-hover:scale-110 group-hover:rotate-3"
       aria-label={alt}
     >

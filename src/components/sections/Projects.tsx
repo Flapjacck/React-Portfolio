@@ -194,11 +194,16 @@ export const Projects: React.FC = () => {
   const translatePx = -(index - centerOffset) * itemStride;
   const trackInnerWidthPx = list.length * cardWidthPx + Math.max(0, list.length - 1) * GAP_PX;
 
+  // real project count and normalized active index for pagination dots
+  const realCount = projects.length;
+  const firstReal = visibleCards;
+  const activeIndex = ((index - firstReal) % realCount + realCount) % realCount;
+
   return (
     <section id="projects" className="py-8 w-full">
       <div className="w-full">
         <RevealOnScroll>
-          <h2 className="text-4xl font-bold mb-8 gradient-bg bg-clip-text text-transparent text-center">
+          <h2 className="text-4xl font-bold mb-8 gradient-bg gradient-glow bg-clip-text text-transparent text-center">
             Projects
           </h2>
         </RevealOnScroll>
@@ -207,83 +212,108 @@ export const Projects: React.FC = () => {
           <div className="relative">
             {/* Track */}
             <div
-            ref={trackRef}
-            className={`flex gap-6 items-stretch w-full overflow-hidden rounded-2xl`}
-            onMouseEnter={() => {
-              if (autoplayRef.current) {
-                window.clearInterval(autoplayRef.current);
-                autoplayRef.current = null;
-              }
-            }}
-            onMouseLeave={() => {
-              if (!autoplayRef.current) {
-                autoplayRef.current = window.setInterval(() => setIndex((i) => i + 1), 10000);
-              }
-            }}
-            onTouchStart={() => {
-              if (autoplayRef.current) {
-                window.clearInterval(autoplayRef.current);
-                autoplayRef.current = null;
-              }
-            }}
-            onTouchEnd={() => {
-              if (!autoplayRef.current) {
-                autoplayRef.current = window.setInterval(() => setIndex((i) => i + 1), 10000);
-              }
-            }}
-          >
-            {/* inner sliding track */}
-            <div
-              className={`flex items-stretch ${isTransitioning ? "transition-transform duration-700 ease-in-out" : ""}`}
-              style={{
-                width: trackInnerWidthPx ? `${trackInnerWidthPx}px` : undefined,
-                transform: `translateX(${translatePx}px)`,
-                gap: `${GAP_PX}px`,
+              ref={trackRef}
+              className={`flex gap-6 items-stretch w-full overflow-hidden rounded-2xl`}
+              onMouseEnter={() => {
+                if (autoplayRef.current) {
+                  window.clearInterval(autoplayRef.current);
+                  autoplayRef.current = null;
+                }
+              }}
+              onMouseLeave={() => {
+                if (!autoplayRef.current) {
+                  autoplayRef.current = window.setInterval(() => setIndex((i) => i + 1), 10000);
+                }
+              }}
+              onTouchStart={() => {
+                if (autoplayRef.current) {
+                  window.clearInterval(autoplayRef.current);
+                  autoplayRef.current = null;
+                }
+              }}
+              onTouchEnd={() => {
+                if (!autoplayRef.current) {
+                  autoplayRef.current = window.setInterval(() => setIndex((i) => i + 1), 10000);
+                }
               }}
             >
-              {list.map((proj, i) => (
-                <div
-                  key={`${proj.title}-${i}`}
-                  className={`flex-shrink-0`} // width set inline
-                  style={{ width: `${cardWidthPx}px` }}
-                >
-                  <FloatingElement intensity={0.3}>
-                    {/* removed mx-3 since gap on the track handles spacing; extra margin caused off-center layout */}
-                    <div className="group relative h-[420px] md:h-[520px] rounded-2xl bg-gradient-to-br from-zinc-900/80 to-zinc-900/40 border border-zinc-800/50 backdrop-blur-lg transition-all duration-500 hover:shadow-[0_20px_50px_rgba(239,68,68,0.12)]">
-                      {proj.image && (
-                        <div className="relative h-40 md:h-56 overflow-hidden rounded-t-2xl">
-                          <img loading="lazy" decoding="async" src={proj.image} alt={proj.title} className="w-full h-full object-cover object-center" />
-                          <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/20 to-transparent" />
-                        </div>
-                      )}
-                      <CardContent className="p-5 flex-1 flex flex-col">
-                        <h3 className="text-xl md:text-2xl font-bold mb-2 text-red-100">{proj.title}</h3>
-                        <p className="text-gray-400 text-sm md:text-base mb-3 line-clamp-3">{proj.description}</p>
-                        <div className="flex flex-wrap gap-2 mb-4">
-                          {proj.technologies.map((t, k) => (
-                            <SkillTag key={k}>{t}</SkillTag>
-                          ))}
-                        </div>
-                        <CardFooter className="pt-3 border-t border-zinc-800/50 mt-auto">
-                          <AnimatedButton href={proj.link} external icon={<ArrowRightIcon />}>
-                            View Project
-                          </AnimatedButton>
-                        </CardFooter>
-                      </CardContent>
-                    </div>
-                  </FloatingElement>
-                </div>
-              ))}
+              {/* inner sliding track */}
+              <div
+                className={`flex items-stretch ${isTransitioning ? "transition-transform duration-700 ease-in-out" : ""}`}
+                style={{
+                  width: trackInnerWidthPx ? `${trackInnerWidthPx}px` : undefined,
+                  transform: `translateX(${translatePx}px)`,
+                  gap: `${GAP_PX}px`,
+                }}
+              >
+                {list.map((proj, i) => (
+                  <div
+                    key={`${proj.title}-${i}`}
+                    className={`flex-shrink-0`} // width set inline
+                    style={{ width: `${cardWidthPx}px` }}
+                  >
+                    <FloatingElement intensity={0.3}>
+                      {/* removed mx-3 since gap on the track handles spacing; extra margin caused off-center layout */}
+                      <div className="group relative h-[420px] md:h-[520px] rounded-2xl bg-gradient-to-br from-zinc-900/80 to-zinc-900/40 border border-zinc-800/50 backdrop-blur-lg transition-all duration-500 hover:shadow-[0_20px_50px_rgba(239,68,68,0.12)]">
+                        {proj.image && (
+                          <div className="relative h-40 md:h-56 overflow-hidden rounded-t-2xl">
+                            <img loading="lazy" decoding="async" src={proj.image} alt={proj.title} className="w-full h-full object-cover object-center" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/20 to-transparent" />
+                          </div>
+                        )}
+                        <CardContent className="p-5 flex-1 flex flex-col">
+                          <h3 className="text-xl md:text-2xl font-bold mb-2 text-red-100">{proj.title}</h3>
+                          <p className="text-gray-400 text-sm md:text-base mb-3 line-clamp-3">{proj.description}</p>
+                          <div className="flex flex-wrap gap-2 mb-4">
+                            {proj.technologies.map((t, k) => (
+                              <SkillTag key={k}>{t}</SkillTag>
+                            ))}
+                          </div>
+                          <CardFooter className="pt-3 border-t border-zinc-800/50 mt-auto">
+                            <AnimatedButton href={proj.link} external icon={<ArrowRightIcon />}>
+                              View Project
+                            </AnimatedButton>
+                          </CardFooter>
+                        </CardContent>
+                      </div>
+                    </FloatingElement>
+                  </div>
+                ))}
+              </div>
             </div>
-            </div>
+          </div>
 
-            {/* Controls */}
-            <button onClick={prev} aria-label="Previous" className="absolute left-4 top-1/2 -translate-y-1/2 bg-zinc-800/80 hover:bg-zinc-700/80 text-white p-2 rounded-full transition-colors duration-300 z-20">
-              ‹
-            </button>
-            <button onClick={next} aria-label="Next" className="absolute right-4 top-1/2 -translate-y-1/2 bg-zinc-800/80 hover:bg-zinc-700/80 text-white p-2 rounded-full transition-colors duration-300 z-20">
-              ›
-            </button>
+          {/* Controls: arrows and dots below the carousel */}
+          <div className="mt-6 flex flex-col items-center gap-3">
+            <div className="flex items-center gap-4">
+              <button
+                onClick={prev}
+                aria-label="Previous"
+                className="bg-zinc-800/80 hover:bg-zinc-700/80 text-white p-2 rounded-full transition-colors duration-300"
+              >
+                ‹
+              </button>
+
+              <div className="flex items-center gap-2">
+                {projects.map((_, p) => (
+                  <button
+                    key={p}
+                    aria-label={`Go to project ${p + 1}`}
+                    onClick={() => setIndex(firstReal + p)}
+                    className={`w-3 h-3 rounded-full transition-all duration-200 ${p === activeIndex ? "bg-red-400 scale-110" : "bg-zinc-700/60 hover:bg-zinc-600"}`}
+                  />
+                ))}
+              </div>
+
+              <button
+                onClick={next}
+                aria-label="Next"
+                className="bg-zinc-800/80 hover:bg-zinc-700/80 text-white p-2 rounded-full transition-colors duration-300"
+              >
+                ›
+              </button>
+            </div>
+            {/* pagination count removed per request */}
           </div>
         </RevealOnScroll>
       </div>
