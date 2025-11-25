@@ -63,16 +63,16 @@ const skillCategories: SkillCategory[] = [
       "C",
       "Assembly",
       "Java",
+      "SQL",
       "HTML5",
       "CSS3",
       "Markdown",
-      "VBA",
-      "SQL",
       "Bash",
+      "VBA",
     ],
   },
   {
-    name: "Frameworks",
+    name: "Frameworks & Libraries",
     icon: <Rocket className="w-5 h-5" />,
     skills: [
       "React",
@@ -80,40 +80,45 @@ const skillCategories: SkillCategory[] = [
       "Node.js",
       "Express.js",
       "FastAPI",
-      "Tailwind CSS",
+      "Tailwind",
+      "PyTorch",
+      "TensorFlow",
+      "JWT",
+      "Bcrypt",
       "Flask",
-      "Vite",
     ],
   },
   {
-    name: "Data & DevOps",
-    icon: <Cloud className="w-5 h-5" />,
-    skills: [
-      "MongoDB",
-      "PostgreSQL",
-      "Redis",
-      "SQLite",
-      "Azure",
-      "Vercel",
-      "Render",
-      "Nginx",
-      "AWS",
-    ],
-  },
-  {
-    name: "Tools & Libraries",
+    name: "Tools & Platforms",
     icon: <Wrench className="w-5 h-5" />,
     skills: [
       "Git",
       "GitHub",
-      "Linux",
-      "QEMU",
-      "PyTorch",
-      "TensorFlow",
-      "JWT",
-      "PNPM",
       "VS Code",
+      "Linux",
       "Docker",
+      "Vite",
+      "QEMU",
+      "PNPM",
+      "Shell scripting",
+      "LXC",
+      "UNIX",
+    ],
+  },
+  {
+    name: "DevOps & Databases",
+    icon: <Cloud className="w-5 h-5" />,
+    skills: [
+      "AWS",
+      "Azure",
+      "Vercel",
+      "Render",
+      "Nginx",
+      "CI/CD",
+      "MongoDB",
+      "PostgreSQL",
+      "Redis",
+      "SQLite",
     ],
   },
 ];
@@ -149,7 +154,7 @@ const workExperiences: (WorkExperienceProps & { isCurrent?: boolean })[] = [
     role: "Software Engineer",
     location: "Waterloo, Ontario",
     period: "Sept 2025 – Present",
-    logo: "https://media.licdn.com/dms/image/v2/D4E0BAQE07j6tPDi_EA/company-logo_100_100/B4EZlPDVPoGwAQ-/0/1757967897896/lauriercs_logo?e=1763596800&v=beta&t=n6GEpv4Or2CBOSwR3wxhON6AsV9EPyIMwP_O0CDIEIY",
+    logo: "https://media.licdn.com/dms/image/v2/D4E0BAQE07j6tPDi_EA/company-logo_100_100/B4EZlPDVPoGwAQ-/0/1757967897896/lauriercs_logo?e=1765411200&v=beta&t=0e9M3NFlVUACE_TqIWZ7fZvCm4xykouNlMA5rqJ-uVw",
     description: "Developing full-stack MERN applications for 100+ club members, contributing to open-source projects in an Agile team environment.",
     isCurrent: true,
   },
@@ -160,7 +165,7 @@ const workExperiences: (WorkExperienceProps & { isCurrent?: boolean })[] = [
     role: "Mobile Parts and Inventory",
     location: "Hamilton, Ontario",
     period: "April 2025 – Aug 2025",
-    logo: "https://media.licdn.com/dms/image/v2/C4D0BAQEvzDtnxZmcnQ/company-logo_100_100/company-logo_100_100/0/1631313389938?e=1763596800&v=beta&t=lTNzVCeyFNhu-Tanjv1kWOJ2z5oRkmt26SWQQ7w7VW4",
+    logo: "https://media.licdn.com/dms/image/v2/C4D0BAQEvzDtnxZmcnQ/company-logo_100_100/company-logo_100_100/0/1631313389938?e=1765411200&v=beta&t=AZzfWqeuBFuPyDw8MUFgAgK1u5byQ1CkZQ1q2nxvb_A",
     description: "Managed $500K+ inventory across 7 yards and optimized delivery routes, reducing equipment downtime by 15%.",
   },
   {
@@ -168,7 +173,7 @@ const workExperiences: (WorkExperienceProps & { isCurrent?: boolean })[] = [
     role: "Yard Cleaner",
     location: "Hamilton, Ontario",
     period: "May 2024 – Aug 2024",
-    logo: "https://media.licdn.com/dms/image/v2/C560BAQFCxplEJejF-g/company-logo_100_100/company-logo_100_100/0/1630623779194/ox_equipment_logo?e=1763596800&v=beta&t=ciIigAdtynEtCMz-VTarCdrk2FRAFdXuorKJrIbwNhU",
+    logo: "https://media.licdn.com/dms/image/v2/C560BAQFCxplEJejF-g/company-logo_100_100/company-logo_100_100/0/1630623779194/ox_equipment_logo?e=1765411200&v=beta&t=cyrvMFnoNWfm7PApieRxbErD5S7Iy61IEktFZ1pGwm8",
     description: "Streamlined yard maintenance by reorganizing workflows, achieving a 50% reduction in overall completion time through proactive problem-solving and continuous monitoring.",
   },
   {
@@ -176,7 +181,7 @@ const workExperiences: (WorkExperienceProps & { isCurrent?: boolean })[] = [
     role: "Dairy Frozen Associate",
     location: "Ancaster, Ontario",
     period: "May 2021 – Aug 2023",
-    logo: "https://media.licdn.com/dms/image/v2/C560BAQHs5FN9hz6seQ/company-logo_100_100/company-logo_100_100/0/1654192383329/wal_mart_canada_logo?e=1763596800&v=beta&t=CMT3nI_bSaqbL79bq3Kh-IsYX1vZszluMWxSye6mfc0",
+    logo: "https://media.licdn.com/dms/image/v2/D560BAQFnXyr2e-PH_A/company-logo_100_100/B56ZpawZ_2KAAQ-/0/1762459230823/wal_mart_canada_logo?e=1765411200&v=beta&t=i0btFfVzdbkpLxMOnF2UUnQfSVg1jW9ZKoTAOW1IlCs",
     description: "Assisted customers and maintained stocked displays while upholding health, safety, and cold chain compliance standards in a fast-paced retail environment.",
   },
 ];
@@ -324,10 +329,7 @@ export const About: React.FC = () => {
                   {/* Bio Text */}
                   <div className="flex-1 text-center md:text-left">
                     <p className="text-gray-300 text-lg leading-relaxed group-hover:text-gray-200 transition-colors duration-300 mb-4">
-                      Third year student at Wilfrid Laurier University exploring
-                      the ways computer science can change our world. My love and
-                      passion for everything tech motivates me throughout this
-                      journey.
+                      From tinkering with Minecraft Redstone mechanics to studying Computer Science at Wilfrid Laurier University, my path has always been driven by a desire to understand how things work. Growing up as my familys IT support taught me early on that technology is really just a powerful tool for helping others. Now in my third year, I am now looking to translate this lifelong passion for problem-solving into a professional career where I can contribute meaningful technical solutions.
                     </p>
                   
                     {/* Open to Opportunities Badge */}

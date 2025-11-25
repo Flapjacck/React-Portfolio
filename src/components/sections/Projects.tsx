@@ -24,6 +24,15 @@ const projects: ProjectProps[] = [
       "https://camo.githubusercontent.com/b6a62237152e84a40e71bbbd5bb68d868d226d1a0874c232e8887f610ec9b0d4/68747470733a2f2f692e696d6775722e636f6d2f6a486f4c62314a2e706e67",
   },
   {
+    title: "MoxBox",
+    description:
+      "Lightweight Self-Hosted File Storage Platform",
+    technologies: ["React", "TypeScript", "Vite", "Node.js", "Express", "Proxmox"],
+    link: "https://github.com/Flapjacck/moxbox",
+    image:
+      "https://github.com/Flapjacck/moxbox/raw/main/frontend/src/assets/boxmox.svg",
+  },
+  {
     title: "PassDat",
     description:
       "A sleek calculator built with JavaScript, HTML, and CSS that helps students calculate their current grades and determine what they need to pass or achieve their target score.",
