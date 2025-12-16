@@ -154,7 +154,7 @@ const workExperiences: (WorkExperienceProps & { isCurrent?: boolean })[] = [
     role: "Software Engineer",
     location: "Waterloo, Ontario",
     period: "Sept 2025 – Present",
-    logo: "https://media.licdn.com/dms/image/v2/D4E0BAQE07j6tPDi_EA/company-logo_100_100/B4EZlPDVPoGwAQ-/0/1757967897896/lauriercs_logo?e=1765411200&v=beta&t=0e9M3NFlVUACE_TqIWZ7fZvCm4xykouNlMA5rqJ-uVw",
+    logo: "https://media.licdn.com/dms/image/v2/D4E0BAQE07j6tPDi_EA/company-logo_200_200/B4EZlPDVPoGwAI-/0/1757967897896/lauriercs_logo?e=1767225600&v=beta&t=3Ea6zcEqY_hyx9vnjdU3h9uXASRN6_Id9Oygshj2xnI",
     description: "Developing full-stack MERN applications for 100+ club members, contributing to open-source projects in an Agile team environment.",
     isCurrent: true,
   },
@@ -165,7 +165,7 @@ const workExperiences: (WorkExperienceProps & { isCurrent?: boolean })[] = [
     role: "Mobile Parts and Inventory",
     location: "Hamilton, Ontario",
     period: "April 2025 – Aug 2025",
-    logo: "https://media.licdn.com/dms/image/v2/C4D0BAQEvzDtnxZmcnQ/company-logo_100_100/company-logo_100_100/0/1631313389938?e=1765411200&v=beta&t=AZzfWqeuBFuPyDw8MUFgAgK1u5byQ1CkZQ1q2nxvb_A",
+    logo: "https://media.licdn.com/dms/image/v2/C4D0BAQEvzDtnxZmcnQ/company-logo_200_200/company-logo_200_200/0/1631313389938?e=1767225600&v=beta&t=a-04xNMLIZxq7tS7uf72JTzpDVr8-Ca5PM_V6ubWCdQ",
     description: "Managed $500K+ inventory across 7 yards and optimized delivery routes, reducing equipment downtime by 15%.",
   },
   {
@@ -173,7 +173,7 @@ const workExperiences: (WorkExperienceProps & { isCurrent?: boolean })[] = [
     role: "Yard Cleaner",
     location: "Hamilton, Ontario",
     period: "May 2024 – Aug 2024",
-    logo: "https://media.licdn.com/dms/image/v2/C560BAQFCxplEJejF-g/company-logo_100_100/company-logo_100_100/0/1630623779194/ox_equipment_logo?e=1765411200&v=beta&t=cyrvMFnoNWfm7PApieRxbErD5S7Iy61IEktFZ1pGwm8",
+    logo: "https://media.licdn.com/dms/image/v2/C560BAQFCxplEJejF-g/company-logo_200_200/company-logo_200_200/0/1630623779194/ox_equipment_logo?e=1767225600&v=beta&t=mx4OcmwMqtcuO65BDVP6-rrSfWdGK4JSRRrMk_nI-lM",
     description: "Streamlined yard maintenance by reorganizing workflows, achieving a 50% reduction in overall completion time through proactive problem-solving and continuous monitoring.",
   },
   {
@@ -181,7 +181,7 @@ const workExperiences: (WorkExperienceProps & { isCurrent?: boolean })[] = [
     role: "Dairy Frozen Associate",
     location: "Ancaster, Ontario",
     period: "May 2021 – Aug 2023",
-    logo: "https://media.licdn.com/dms/image/v2/D560BAQFnXyr2e-PH_A/company-logo_100_100/B56ZpawZ_2KAAQ-/0/1762459230823/wal_mart_canada_logo?e=1765411200&v=beta&t=i0btFfVzdbkpLxMOnF2UUnQfSVg1jW9ZKoTAOW1IlCs",
+    logo: "https://media.licdn.com/dms/image/v2/D560BAQGsjEsLkMcAwg/company-logo_100_100/B56Zpawh76G0AY-/0/1762459263180/wal_mart_canada_logo?e=1767225600&v=beta&t=aelRw7vtccIxSB-D_uAv_LREn3cEdSYPFXI2eVsNCdM",
     description: "Assisted customers and maintained stocked displays while upholding health, safety, and cold chain compliance standards in a fast-paced retail environment.",
   },
 ];
