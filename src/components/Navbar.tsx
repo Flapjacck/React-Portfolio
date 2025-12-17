@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { throttle } from "../utils/throttle";
 
 interface NavbarProps {
   menuOpen: boolean;
@@ -26,13 +27,13 @@ export const Navbar = ({ menuOpen, setMenuOpen, isLoaded }: NavbarProps) => {
   }, [isLoaded]);
 
   useEffect(() => {
-    const handleScroll = () => {
+    const handleScroll = throttle(() => {
       const totalHeight =
         document.documentElement.scrollHeight - window.innerHeight;
       const progress = (window.scrollY / totalHeight) * 100;
       setScrollProgress(progress);
       setIsScrolled(window.scrollY > 20);
-    };
+    }, 50); // Throttle to 50ms (max 20 calls per second)
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
