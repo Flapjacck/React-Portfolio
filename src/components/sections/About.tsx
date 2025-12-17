@@ -675,7 +675,7 @@ const WorkExperienceCard: React.FC<WorkExperienceCardProps> = ({
 }) => {
   return (
     <div
-      className={`rounded-lg p-4 sm:p-4 transition-all duration-300 hover:scale-[1.02] flex flex-col h-full
+      className={`rounded-lg p-4 sm:p-4 transition-all duration-300 flex flex-col h-full
                   ${
                     isCurrent
                       ? "bg-red-500/10 border border-red-500/30 hover:bg-red-500/15 hover:border-red-500/50"
