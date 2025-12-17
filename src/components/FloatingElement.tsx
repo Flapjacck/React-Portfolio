@@ -1,4 +1,5 @@
 import { ReactNode, useRef, useEffect } from "react";
+import { throttle } from "../utils/throttle";
 
 interface FloatingElementProps {
   children: ReactNode;
@@ -17,7 +18,7 @@ export const FloatingElement = ({
     const element = elementRef.current;
     if (!element) return;
 
-    const handleMouseMove = (e: MouseEvent) => {
+    const handleMouseMove = throttle((e: MouseEvent) => {
       const rect = element.getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
@@ -26,7 +27,7 @@ export const FloatingElement = ({
       const deltaY = (e.clientY - centerY) * intensity * 0.01;
 
       element.style.transform = `translate(${deltaX}px, ${deltaY}px) perspective(1000px) rotateX(${-deltaY}deg) rotateY(${deltaX}deg)`;
-    };
+    }, 16); // Throttle to 16ms (~60fps)
 
     const handleMouseLeave = () => {
       element.style.transform =
@@ -70,7 +71,7 @@ export const ParallaxCard = ({
     const card = cardRef.current;
     if (!card) return;
 
-    const handleMouseMove = (e: MouseEvent) => {
+    const handleMouseMove = throttle((e: MouseEvent) => {
       const rect = card.getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
@@ -80,7 +81,7 @@ export const ParallaxCard = ({
       const deltaY = (e.clientY - centerY) * (depth * 0.01) * 0.01;
 
       card.style.transform = `translate(${deltaX}px, ${deltaY}px) perspective(1000px) rotateX(${-deltaY}deg) rotateY(${deltaX}deg)`;
-    };
+    }, 16); // Throttle to 16ms (~60fps)
 
     const handleMouseLeave = () => {
       card.style.transform =
