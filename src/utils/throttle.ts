@@ -4,13 +4,13 @@
  * @param limit - Time limit in milliseconds between calls
  * @returns Throttled function
  */
-export const throttle = <T extends (...args: unknown[]) => void>(
+export const throttle = <T extends (...args: any[]) => any>(
     callback: T,
     limit: number
 ): T => {
     let inThrottle: boolean;
 
-    return ((...args: unknown[]) => {
+    return ((...args: any[]) => {
         if (!inThrottle) {
             callback(...args);
             inThrottle = true;
