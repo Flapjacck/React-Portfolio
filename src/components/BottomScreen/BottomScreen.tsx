@@ -7,6 +7,7 @@
  */
 
 import type { ReactNode } from 'react';
+import { BottomScreenBoxes } from './BottomScreenBoxes';
 
 export interface BottomScreenProps {
   /** Content to render inside the bottom screen */
@@ -15,7 +16,8 @@ export interface BottomScreenProps {
 
 /**
  * Renders the DS Lite bottom screen display area
- * @param children - Content to display on the bottom screen
+ * @param children - Content to display on the bottom screen. If omitted,
+ *                   a set of DS‑style boxes is rendered by default.
  * @returns Bottom screen component with 4:3 aspect ratio
  */
 export function BottomScreen({ children }: BottomScreenProps) {
@@ -26,9 +28,7 @@ export function BottomScreen({ children }: BottomScreenProps) {
         {children ? (
           children
         ) : (
-          <div className="text-center text-gray-500">
-            <p className="text-sm font-medium">Bottom Screen</p>
-          </div>
+          <BottomScreenBoxes />
         )}
       </div>
     </div>
