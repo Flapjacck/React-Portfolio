@@ -16,9 +16,13 @@ import { BottomScreen } from './components/BottomScreen/BottomScreen';
  */
 function App() {
   return (
-    <main className="flex flex-col items-center justify-center gap-[var(--screen-gap)] h-screen w-screen bg-black overflow-hidden p-[var(--screen-gap)]">
-      <TopScreen />
-      <BottomScreen />
+    // main container centers the dual screens but does not need to paint the whole
+    // viewport any more; the global <body> already has the black background.
+    <main className="flex flex-col items-center justify-center gap-(--screen-gap) h-screen w-full overflow-hidden py-(--screen-gap) px-(--screen-gap)">
+      <div className="w-full max-w-(--screen-max-width) flex flex-col items-center justify-center gap-(--screen-gap)">
+        <TopScreen />
+        <BottomScreen />
+      </div>
     </main>
   );
 }

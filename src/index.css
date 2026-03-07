@@ -38,6 +38,8 @@ body {
     margin: 0;
     padding: 0;
     overflow: hidden;
+    /* ensure the entire viewport uses the intended black backdrop; screens float on top */
+    background-color: black;
 }
 
 #root {
@@ -51,7 +53,8 @@ body {
 @layer components {
     .ds-screen {
         /* base appearance */
-        @apply bg-(--screen-bg-primary) rounded-lg shadow-lg;
+        @apply bg-(--screen-bg-primary) shadow-lg;
+        /* corners squared for authenticity */
 
         /* maintain the 4:3 ratio via "aspect-ratio" on the element itself */
         aspect-ratio: 4/3;
@@ -71,6 +74,7 @@ body {
     }
 
     .ds-screen-content {
-        @apply bg-(--content-bg) w-full h-full rounded-md;
+        @apply bg-(--content-bg) w-full h-full;
+        /* remove inner rounding too */
     }
 }

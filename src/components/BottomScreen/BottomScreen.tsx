@@ -21,7 +21,7 @@ export interface BottomScreenProps {
 export function BottomScreen({ children }: BottomScreenProps) {
   // Add margin and responsive padding for gap
   return (
-    <div className="ds-screen aspect-[4/3] w-full flex-none flex items-center justify-center min-w-0 m-0.5 md:m-1.5 lg:m-2">
+    <div className="ds-screen aspect-4/3 w-full flex-none flex items-center justify-center min-w-0">
       <div className="ds-screen-content flex items-center justify-center p-2 md:p-3 lg:p-4">
         {children ? (
           children
