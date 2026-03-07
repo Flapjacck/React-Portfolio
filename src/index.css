@@ -50,7 +50,24 @@ body {
 /* Screen base styling layer */
 @layer components {
     .ds-screen {
-        @apply bg-(--screen-bg-primary) rounded-lg shadow-lg flex-1 aspect-4/3;
+        /* base appearance */
+        @apply bg-(--screen-bg-primary) rounded-lg shadow-lg;
+
+        /* maintain the 4:3 ratio via "aspect-ratio" on the element itself */
+        aspect-ratio: 4/3;
+
+        /* layout defaults: allow the element to size according to constraints */
+        width: auto;
+        height: auto;
+
+        /* limit by design maximum width, but also shrink if height is the limiting factor */
+        /* when height constraint dominates: width ≤ ((100vh - 3gap)/2) * 4/3 */
+        max-width: min(var(--screen-max-width),
+                calc((100vh - 3 * var(--screen-gap)) * 2 / 3));
+
+        /* prevent two stacked screens from overflowing viewport height; account for
+           padding and the gap between screens (3 × gap total vertical loss) */
+        max-height: calc((100vh - 3 * var(--screen-gap)) / 2);
     }
 
     .ds-screen-content {

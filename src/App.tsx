@@ -16,7 +16,7 @@ import { BottomScreen } from './components/BottomScreen/BottomScreen';
  */
 function App() {
   return (
-    <main className="flex flex-col items-center justify-center gap-(--screen-gap) h-full w-full bg-black overflow-hidden">
+    <main className="flex flex-col items-center justify-center gap-[var(--screen-gap)] h-screen w-screen bg-black overflow-hidden p-[var(--screen-gap)]">
       <TopScreen />
       <BottomScreen />
     </main>
