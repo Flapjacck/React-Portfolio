@@ -77,4 +77,35 @@ body {
         @apply bg-(--content-bg) w-full h-full;
         /* remove inner rounding too */
     }
+
+    /* -----------------------------------
+       Grid backgrounds for DS screens
+       ----------------------------------- */
+    :root {
+        /* light grey line used for both grids */
+        --ds-grid-line: #ccc;
+    }
+
+    .top-screen-grid {
+        /* 16×16px squares scaled to 4:3 container
+           DS dimensions: 256×192 px → use corresponding percentages
+           horizontal increment: 16/256 = 6.25%  vertical: 16/192 = 8.333%
+           lines are 2px thick for greater visibility */
+        background-image:
+            linear-gradient(to right, var(--ds-grid-line) 2px, transparent 2px),
+            linear-gradient(to bottom, var(--ds-grid-line) 2px, transparent 2px);
+        background-size: 6.25% 8.333%;
+    }
+
+    .bottom-screen-grid {
+        /* 48×48px squares scaled similarly
+           horizontal: 48/256 = 18.75%; vertical: 48/192 = 25%
+           vertical offset of first line: 24px → 24/192 = 12.5%
+           thicker 2px lines for stronger contrast */
+        background-image:
+            linear-gradient(to right, var(--ds-grid-line) 2px, transparent 2px),
+            linear-gradient(to bottom, var(--ds-grid-line) 2px, transparent 2px);
+        background-size: 18.75% 25%;
+        background-position: 0 12.5%;
+    }
 }

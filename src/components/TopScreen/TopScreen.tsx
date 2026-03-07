@@ -24,7 +24,7 @@ export function TopScreen({ children }: TopScreenProps) {
   return (
     <div className="ds-screen aspect-4/3 w-full flex-none flex items-center justify-center min-w-0">
       {/* content area becomes relative so header can be absolute */}
-      <div className="ds-screen-content relative w-full h-full">
+      <div className="ds-screen-content top-screen-grid relative w-full h-full">
         {/* fixed-height header bar at top */}
         <TopScreenHeader />
 
