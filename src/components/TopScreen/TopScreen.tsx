@@ -8,6 +8,7 @@
 
 import type { ReactNode } from 'react';
 import { TopScreenHeader } from './TopScreenHeader';
+// TopScreenHeader displays the name, clock, and social icons;
 
 export interface TopScreenProps {
   /** Content to render inside the top screen */
