@@ -1,1 +1,59 @@
 @import "tailwindcss";
+
+/* ============================================
+   DS Lite Screen Design Tokens & Layout Locks
+   ============================================ */
+
+/* font setup */
+@font-face {
+    font-family: 'DS-BIOS';
+    src: url('/fonts/DS-BIOS.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+    font-family: 'DS-BIOS', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+    /* Screen Dimensions & Spacing */
+    --screen-aspect: 4 / 3;
+    --screen-gap: 0.75rem;
+    --screen-width: 100%;
+    --screen-max-width: 1024px;
+
+    /* Screen Colors */
+    --screen-bg-primary: #e8ddd0;
+    --screen-border: #d4a574;
+
+    /* Content Area */
+    --content-bg: #f5f1eb;
+    --content-border: #d0c4b8;
+}
+
+/* Lock viewport - prevent scrolling */
+html,
+body {
+    height: 100vh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#root {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Screen base styling layer */
+@layer components {
+    .ds-screen {
+        @apply bg-(--screen-bg-primary) rounded-lg shadow-lg flex-1 aspect-4/3;
+    }
+
+    .ds-screen-content {
+        @apply bg-(--content-bg) w-full h-full rounded-md;
+    }
+}
