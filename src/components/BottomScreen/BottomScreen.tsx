@@ -12,6 +12,8 @@ import { BottomScreenBoxes } from './BottomScreenBoxes';
 export interface BottomScreenProps {
   /** Content to render inside the bottom screen */
   children?: ReactNode;
+  /** whether to show the grid background (startup hides it) */
+  showGrid?: boolean;
 }
 
 /**
@@ -20,11 +22,15 @@ export interface BottomScreenProps {
  *                   a set of DS‑style boxes is rendered by default.
  * @returns Bottom screen component with 4:3 aspect ratio
  */
-export function BottomScreen({ children }: BottomScreenProps) {
+export function BottomScreen({ children, showGrid = true }: BottomScreenProps) {
   // Add margin and responsive padding for gap
   return (
     <div className="ds-screen aspect-4/3 w-full flex-none flex items-center justify-center min-w-0">
-      <div className="ds-screen-content bottom-screen-grid flex items-center justify-center p-2 md:p-3 lg:p-4">
+      <div
+        className={`ds-screen-content ${
+          showGrid ? 'bottom-screen-grid' : ''
+        } flex items-center justify-center p-2 md:p-3 lg:p-4`}
+      >
         {children ? (
           children
         ) : (
