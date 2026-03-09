@@ -40,8 +40,7 @@ export function StartupScreen({
 }: StartupScreenProps) {
   // Boot stage: "off" (power button) or "boot" (warning screen plus audio)
   const [stage, setStage] = useState<'off' | 'boot'>('off');
-  // Indicates whether the startup sound has completed playing
-  const [audioFinished, setAudioFinished] = useState(false);
+  // Indicates whether the startup sound has completed playing (no longer used)
   const audioRef = useRef<HTMLAudioElement | null>(null);
   // Track exit state for fade-out animation as before
   const [isExiting, setIsExiting] = useState(false);
@@ -55,20 +54,14 @@ export function StartupScreen({
     const audio = new Audio('/sounds/startup.wav');
     audioRef.current = audio;
 
-    const handleEnded = () => setAudioFinished(true);
-    audio.addEventListener('ended', handleEnded);
-
     audio
       .play()
       .catch((err) => {
-        // In case playback fails (very rare with user-initiated event), mark
-        // finished so users can continue.
+        // playback failures are non-critical
         console.warn('startup audio failed to play', err);
-        setAudioFinished(true);
       });
 
     return () => {
-      audio.removeEventListener('ended', handleEnded);
       audio.pause();
       audioRef.current = null;
     };
@@ -84,9 +77,8 @@ export function StartupScreen({
     });
   };
 
-  // Called when the bottom screen should advance (after audio completes)
+  // Called when the bottom screen should advance.
   const handleContinue = () => {
-    if (!audioFinished) return; // guard against premature clicks
     playConfirmSound();
     setIsExiting(true);
   };
@@ -130,14 +122,11 @@ export function StartupScreen({
         {/* Bottom Screen - Warning text with fade animation, hide grid */}
         <BottomScreen showGrid={false}>
           <motion.div
-            className={`flex items-center justify-center h-full w-full ${
-              audioFinished ? 'cursor-pointer' : 'cursor-not-allowed'
-            }`}
+            className="flex items-center justify-center h-full w-full cursor-pointer"
             role="button"
-            tabIndex={audioFinished ? 0 : -1}
+            tabIndex={0}
             onClick={handleContinue}
             onKeyDown={(e) => {
-              if (!audioFinished) return;
               if (e.key === 'Enter' || e.key === ' ') {
                 handleContinue();
               }
@@ -157,9 +146,9 @@ export function StartupScreen({
                 {message}
               </p>
 
-              {/* Continue prompt - before audio finishes show a hold message */}
+              {/* Continue prompt */}
               <p className="text-2xl sm:text-3xl mt-2 text-[var(--content-text, #2a2a2a)] opacity-75 blink-text">
-                {audioFinished ? continueText : 'Please wait...'}
+                {continueText}
               </p>
             </div>
           </motion.div>
