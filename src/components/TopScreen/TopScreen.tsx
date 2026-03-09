@@ -8,6 +8,7 @@
 
 import type { ReactNode } from 'react';
 import { TopScreenHeader } from './TopScreenHeader';
+import { motion } from 'framer-motion';
 // TopScreenHeader displays the name, clock, and social icons;
 
 export interface TopScreenProps {
@@ -29,10 +30,13 @@ export function TopScreen({ children, hideHeader = false, showGrid = true }: Top
   return (
     <div className="ds-screen aspect-4/3 w-full flex-none flex items-center justify-center min-w-0">
       {/* content area becomes relative so header can be absolute */}
-      <div
+      <motion.div
         className={`ds-screen-content ${
           showGrid ? 'top-screen-grid' : ''
         } relative w-full h-full`}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6, ease: 'easeInOut' }}
       >
         {/* fixed-height header bar at top, or nothing when hidden */}
         {!hideHeader && <TopScreenHeader />}
@@ -51,7 +55,7 @@ export function TopScreen({ children, hideHeader = false, showGrid = true }: Top
             </div>
           )}
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

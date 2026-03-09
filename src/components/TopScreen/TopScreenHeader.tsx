@@ -10,6 +10,7 @@
  */
 
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 // using static PNG logos instead of vector icons; files live in public/assets (served at /assets/*)
 
 
@@ -55,57 +56,85 @@ export function TopScreenHeader({
 
   
   /*
-    Percentages derived from an original 256px-wide DS display:
-      - (previous spec) total group width ≈80px → 31.25% (not enforced now)
-      - gap between items = 5px → ≈1.95%
-      - icons were originally 16px (6.25%) but are now scaled via text-2xl
-        so they match the header font size.
-    The container no longer restricts width; content grows as necessary while
-    remaining right-aligned.
+    DS Lite Header Enhancement:
+      - Increased spacing: 1px bordered separators with 1.5rem padding
+      - Separators placed between time, date, and social icons
+      - Authentic DS aesthetic with vertical lines dividing content sections
+    All percentages derived from original 256px-wide DS display.
   */
 
   return (
-    <div
+    <motion.div
+      // slide in from above when the component mounts
+      initial={{ y: '-100%' }}
+      animate={{ y: 0 }}
+      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
       className="relative top-0 left-0 w-full h-[8.333%] \
         bg-linear-to-b from-(--screen-bg-primary) to-(--screen-border) \
-        flex items-center justify-between px-2"
+        flex items-center justify-between px-4"
     >
       {/* left‑aligned name */}
       <span className="text-2xl leading-none">Spencer Kelly</span>
 
       {/* right group: time, date, github, linkedin
-          removing fixed width so items can grow when text is enlarged */}
-      <div className="flex items-center justify-end gap-x-[1.95%]">
-        <span className="text-2xl font-medium">{timeStr}</span>
-        <span className="text-2xl font-medium">{dateStr}</span>
-        <a
-          href={githubUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="GitHub"
-        >
-          <img
-            src="/assets/Github_pixel.png"
-            alt="GitHub logo"
-            className="h-6 w-auto"
-          />
-        </a>
-        <a
-          href={linkedinUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="LinkedIn"
-        >
-          <img
-            src="/assets/Linkedin_pixel.png"
-            alt="LinkedIn logo"
-            className="h-6 w-auto"
-          />
-        </a>
+          with ds lite separator lines extending full header height */}
+      <div className="flex items-center justify-end gap-0 h-full">
+        {/* Separator line (left side) */}
+        <div className="h-full border-r-2 border-slate-600 border-dashed" />
+
+        {/* Time Section */}
+        <div className="px-3 flex items-center">
+          <span className="text-2xl font-medium">{timeStr}</span>
+        </div>
+
+        {/* Separator line */}
+        <div className="h-full border-r-2 border-slate-600 border-dashed" />
+
+        {/* Date Section */}
+        <div className="px-3 flex items-center">
+          <span className="text-2xl font-medium">{dateStr}</span>
+        </div>
+
+        {/* Separator line */}
+        <div className="h-full border-r-2 border-slate-600 border-dashed" />
+
+        {/* Social Icons Section */}
+        <div className="pl-3 pr-0 h-full flex items-center space-x-3">
+          <a
+            href={githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            className="transition-opacity hover:opacity-70"
+          >
+            <img
+              src="/assets/Github_pixel.png"
+              alt="GitHub logo"
+              className="h-6 w-auto"
+            />
+          </a>
+
+          {/* Separator line (between icons) */}
+          <div className="h-full border-r-2 border-slate-600 border-dashed" />
+
+          <a
+            href={linkedinUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            className="transition-opacity hover:opacity-70"
+          >
+            <img
+              src="/assets/Linkedin_pixel.png"
+              alt="LinkedIn logo"
+              className="h-6 w-auto"
+            />
+          </a>
+        </div>
       </div>
 
       {/* black line (2px) at bottom, inside header */}
       <div className="absolute bottom-0 left-0 w-full h-0.5 bg-black" />
-    </div>
+    </motion.div>
   );
 }

@@ -8,6 +8,7 @@
 
 import type { ReactNode } from 'react';
 import { BottomScreenBoxes } from './BottomScreenBoxes';
+import { motion } from 'framer-motion';
 
 export interface BottomScreenProps {
   /** Content to render inside the bottom screen */
@@ -26,17 +27,20 @@ export function BottomScreen({ children, showGrid = true }: BottomScreenProps) {
   // Add margin and responsive padding for gap
   return (
     <div className="ds-screen aspect-4/3 w-full flex-none flex items-center justify-center min-w-0">
-      <div
+      <motion.div
         className={`ds-screen-content ${
           showGrid ? 'bottom-screen-grid' : ''
         } flex items-center justify-center p-2 md:p-3 lg:p-4`}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6, ease: 'easeInOut' }}
       >
         {children ? (
           children
         ) : (
           <BottomScreenBoxes />
         )}
-      </div>
+      </motion.div>
     </div>
   );
 }
