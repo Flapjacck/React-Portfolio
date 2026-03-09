@@ -26,24 +26,24 @@ export function BottomScreenBoxes() {
   //   horizontal gap: 3/189 ≈ 1.59%
 
   return (
-    <div className="flex flex-col items-center justify-center w-[73.83%] h-[73.96%] gap-y-[2.11%]">
+    <div className="flex flex-col items-center justify-center w-[77%] h-[78%] gap-y-[3.11%]">
       {/* top large box */}
-      <div className="w-full h-[32.39%] border border-black pixelated-bg flex items-center justify-center">
+      <div className="w-full h-[32.39%] border-2 border-black pixelated-bg flex items-center justify-center p-[3%]">
         <span className="text-sm font-medium">Box 1</span>
       </div>
 
       {/* middle row with two small boxes */}
       <div className="flex w-full h-[31.69%] items-center justify-center gap-x-[1.59%]">
-        <div className="w-[49.21%] h-full border border-black pixelated-bg flex items-center justify-center">
+        <div className="w-[49.21%] h-full border-2 border-black pixelated-bg flex items-center justify-center p-[3%]">
           <span className="text-sm font-medium">Box 2</span>
         </div>
-        <div className="w-[49.21%] h-full border border-black pixelated-bg flex items-center justify-center">
+        <div className="w-[49.21%] h-full border-2 border-black pixelated-bg flex items-center justify-center p-[3%]">
           <span className="text-sm font-medium">Box 3</span>
         </div>
       </div>
 
       {/* bottom large box */}
-      <div className="w-full h-[32.39%] border border-black pixelated-bg flex items-center justify-center">
+      <div className="w-full h-[32.39%] border-2 border-black pixelated-bg flex items-center justify-center p-[3%]">
         <span className="text-sm font-medium">Box 4</span>
       </div>
     </div>
