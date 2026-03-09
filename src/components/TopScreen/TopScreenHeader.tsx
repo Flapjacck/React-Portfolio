@@ -10,6 +10,7 @@
  */
 
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 // using static PNG logos instead of vector icons; files live in public/assets (served at /assets/*)
 
 
@@ -65,7 +66,11 @@ export function TopScreenHeader({
   */
 
   return (
-    <div
+    <motion.div
+      // slide in from above when the component mounts
+      initial={{ y: '-100%' }}
+      animate={{ y: 0 }}
+      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
       className="relative top-0 left-0 w-full h-[8.333%] \
         bg-linear-to-b from-(--screen-bg-primary) to-(--screen-border) \
         flex items-center justify-between px-2"
@@ -106,6 +111,6 @@ export function TopScreenHeader({
 
       {/* black line (2px) at bottom, inside header */}
       <div className="absolute bottom-0 left-0 w-full h-0.5 bg-black" />
-    </div>
+    </motion.div>
   );
 }

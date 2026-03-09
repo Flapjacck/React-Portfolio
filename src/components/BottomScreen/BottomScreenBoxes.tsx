@@ -13,6 +13,8 @@
  * Component containing four dynamically sized boxes (two large, two small)
  * stacked vertically with precise spacing between them.
  */
+import { motion } from 'framer-motion';
+
 export function BottomScreenBoxes() {
   // percentages derived from the 189×142 container referenced to 256×192
   // overall screen size. values rounded to two decimal places where needed.
@@ -26,7 +28,12 @@ export function BottomScreenBoxes() {
   //   horizontal gap: 3/189 ≈ 1.59%
 
   return (
-    <div className="flex flex-col items-center justify-center w-[77%] h-[78%] gap-y-[3.11%]">
+    <motion.div
+      className="flex flex-col items-center justify-center w-[77%] h-[78%] gap-y-[3.11%]"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.6, delay: 0.3, ease: 'easeInOut' }}
+    >
       {/* top large box */}
       <div className="w-full h-[32.39%] border-2 border-black pixelated-bg flex items-center justify-center p-[3%]">
         <span className="text-sm font-medium">Box 1</span>
@@ -46,6 +53,6 @@ export function BottomScreenBoxes() {
       <div className="w-full h-[32.39%] border-2 border-black pixelated-bg flex items-center justify-center p-[3%]">
         <span className="text-sm font-medium">Box 4</span>
       </div>
-    </div>
+    </motion.div>
   );
 }
