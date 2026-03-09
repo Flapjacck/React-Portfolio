@@ -108,4 +108,21 @@ body {
         background-size: 18.75% 25%;
         background-position: 0 12.5%;
     }
+
+    /* utility for blinking/colour-pulse text used on startup screen */
+    @keyframes blinkText {
+
+        0%,
+        100% {
+            color: var(--content-text, #000000);
+        }
+
+        50% {
+            color: #8e8e8e;
+        }
+    }
+
+    .blink-text {
+        animation: blinkText 1s infinite;
+    }
 }
