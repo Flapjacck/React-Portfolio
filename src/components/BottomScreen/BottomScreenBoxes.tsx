@@ -35,22 +35,22 @@ export function BottomScreenBoxes() {
       transition={{ duration: 0.6, delay: 0.3, ease: 'easeInOut' }}
     >
       {/* top large box */}
-      <div className="w-full h-[32.39%] border-2 border-black pixelated-bg flex items-center justify-center p-[3%]">
+      <div className="w-full h-[32.39%] border-2 border-black box-gradient flex items-center justify-center p-[3%]">
         <span className="text-sm font-medium">Box 1</span>
       </div>
 
       {/* middle row with two small boxes */}
       <div className="flex w-full h-[31.69%] items-center justify-center gap-x-[1.59%]">
-        <div className="w-[49.21%] h-full border-2 border-black pixelated-bg flex items-center justify-center p-[3%]">
+        <div className="w-[49.21%] h-full border-2 border-black box-gradient flex items-center justify-center p-[3%]">
           <span className="text-sm font-medium">Box 2</span>
         </div>
-        <div className="w-[49.21%] h-full border-2 border-black pixelated-bg flex items-center justify-center p-[3%]">
+        <div className="w-[49.21%] h-full border-2 border-black box-gradient flex items-center justify-center p-[3%]">
           <span className="text-sm font-medium">Box 3</span>
         </div>
       </div>
 
       {/* bottom large box */}
-      <div className="w-full h-[32.39%] border-2 border-black pixelated-bg flex items-center justify-center p-[3%]">
+      <div className="w-full h-[32.39%] border-2 border-black box-gradient flex items-center justify-center p-[3%]">
         <span className="text-sm font-medium">Box 4</span>
       </div>
     </motion.div>

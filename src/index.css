@@ -125,4 +125,9 @@ body {
     .blink-text {
         animation: blinkText 1s infinite;
     }
+
+    /* Linear gradient for bottom screen boxes */
+    .box-gradient {
+        background: linear-gradient(to bottom, #fbfbfb 0%, #c3c3c3 100%);
+    }
 }
