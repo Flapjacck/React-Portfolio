@@ -35,8 +35,11 @@ export function BottomScreenBoxes() {
       transition={{ duration: 0.6, delay: 0.3, ease: 'easeInOut' }}
     >
       {/* top large box */}
-      <div className="w-full h-[32.39%] border-2 border-black box-gradient flex items-center justify-center p-[3%]">
-        <span className="text-sm font-medium">Box 1</span>
+      <div className="relative w-full h-[32.39%] border-2 border-black box-gradient">
+        {/* white game name rectangle - positioned right with small margins */}
+        <div className="absolute right-[1%] top-1/2 -translate-y-1/2 w-[75.13%] h-[89.13%] bg-white flex items-center justify-center border border-gray-300">
+          <span className="text-xs font-medium text-black">Box 1</span>
+        </div>
       </div>
 
       {/* middle row with two small boxes */}
@@ -50,8 +53,11 @@ export function BottomScreenBoxes() {
       </div>
 
       {/* bottom large box */}
-      <div className="w-full h-[32.39%] border-2 border-black box-gradient flex items-center justify-center p-[3%]">
-        <span className="text-sm font-medium">Box 4</span>
+      <div className="relative w-full h-[32.39%] border-2 border-black box-gradient">
+        {/* white game name rectangle - positioned right with small margins */}
+        <div className="absolute right-[1%] top-1/2 -translate-y-1/2 w-[75.13%] h-[89.13%] bg-white flex items-center justify-center border border-gray-300">
+          <span className="text-xs font-medium text-black">Box 4</span>
+        </div>
       </div>
     </motion.div>
   );
