@@ -28,6 +28,8 @@
     /* Content Area */
     --content-bg: #f5f1eb;
     --content-border: #d0c4b8;
+    /* selector used for bottom-screen box highlight */
+    --selector-blue: #0066FF;
 }
 
 /* Lock viewport - prevent scrolling */
