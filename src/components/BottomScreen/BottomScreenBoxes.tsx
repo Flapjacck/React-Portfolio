@@ -107,8 +107,16 @@ export function BottomScreenBoxes() {
         onClick={handleClick(0)}
         className="relative w-full h-[32.39%] border-2 border-black box-gradient cursor-pointer"
       >
+        {/* logo positioned left, outside the inner rectangle */}
+        <img
+          src="/assets/Black_logo_pixel.png"
+          alt="Logo"
+          className="absolute left-[12%] top-1/2 -translate-x-1/2 -translate-y-1/2 h-[60%] w-auto"
+        />
+
+        {/* inner white rectangle remains right-aligned */}
         <div className="absolute right-[1%] top-1/2 -translate-y-1/2 w-[75.13%] h-[89.13%] bg-white flex items-center justify-center border border-gray-300">
-          <span className="text-xs font-medium text-black">Box 1</span>
+          <span className="text-[clamp(1rem,3vw,2rem)] font-medium text-black">About Me</span>
         </div>
       </div>
 
@@ -121,7 +129,7 @@ export function BottomScreenBoxes() {
           onClick={handleClick(1)}
           className="w-[49.21%] h-full border-2 border-black box-gradient flex items-center justify-center p-[3%] cursor-pointer"
         >
-          <span className="text-sm font-medium">Box 2</span>
+          <span className="text-[clamp(1rem,3vw,2rem)] font-medium">Box 2</span>
         </div>
         <div
           ref={(el) => { boxRefs.current[2] = el; }}
@@ -130,7 +138,7 @@ export function BottomScreenBoxes() {
           onClick={handleClick(2)}
           className="w-[49.21%] h-full border-2 border-black box-gradient flex items-center justify-center p-[3%] cursor-pointer"
         >
-          <span className="text-sm font-medium">Box 3</span>
+          <span className="text-[clamp(1rem,3vw,2rem)] font-medium">Box 3</span>
         </div>
       </div>
 
@@ -143,7 +151,7 @@ export function BottomScreenBoxes() {
         className="relative w-full h-[32.39%] border-2 border-black box-gradient cursor-pointer"
       >
         <div className="absolute right-[1%] top-1/2 -translate-y-1/2 w-[75.13%] h-[89.13%] bg-white flex items-center justify-center border border-gray-300">
-          <span className="text-xs font-medium text-black">Box 4</span>
+          <span className="text-[clamp(1rem,3vw,2rem)] font-medium text-black">Box 4</span>
         </div>
       </div>
     </motion.div>
