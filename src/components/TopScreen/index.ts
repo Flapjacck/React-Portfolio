@@ -7,3 +7,7 @@
 
 export { TopScreen } from './TopScreen';
 export type { TopScreenProps } from './TopScreen';
+export { AboutMe } from './AboutMe';
+export { Skills } from './Skills';
+export { Experience } from './Experience';
+export { Projects } from './Projects';

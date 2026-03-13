@@ -10,7 +10,7 @@
 
 import { useState } from 'react';
 import { StartupScreen } from './components/StartupScreen';
-import { TopScreen } from './components/TopScreen/TopScreen';
+import { TopScreen, type SectionType } from './components/TopScreen/TopScreen';
 import { BottomScreen } from './components/BottomScreen/BottomScreen';
 
 /**
@@ -20,6 +20,8 @@ import { BottomScreen } from './components/BottomScreen/BottomScreen';
 function App() {
   // Show startup screen on initial load; user must dismiss it to see main screens
   const [showStartup, setShowStartup] = useState(true);
+  // Track the currently selected section from bottom screen
+  const [selectedSection, setSelectedSection] = useState<SectionType>('About Me');
 
   // Render startup screen if showStartup is true; otherwise render main dual-screen layout
   if (showStartup) {
@@ -33,8 +35,8 @@ function App() {
     // viewport any more; the global <body> already has the black background.
     <main className="flex flex-col items-center justify-center gap-(--screen-gap) h-screen w-full overflow-hidden py-(--screen-gap) px-(--screen-gap)">
       <div className="w-full max-w-(--screen-max-width) flex flex-col items-center justify-center gap-(--screen-gap)">
-        <TopScreen />
-        <BottomScreen />
+        <TopScreen selectedSection={selectedSection} />
+        <BottomScreen onBoxSelect={(section) => setSelectedSection(section as SectionType)} />
       </div>
     </main>
   );

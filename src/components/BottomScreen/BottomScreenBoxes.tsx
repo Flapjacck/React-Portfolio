@@ -18,7 +18,12 @@ import { useState, useRef, useLayoutEffect, useEffect, useCallback } from 'react
 import { Howl } from 'howler';
 import { BoxSelector } from './BoxSelector';
 
-export function BottomScreenBoxes() {
+interface BottomScreenBoxesProps {
+  /** Callback when a box is selected (clicked) */
+  onBoxSelect?: (section: string) => void;
+}
+
+export function BottomScreenBoxes({ onBoxSelect }: BottomScreenBoxesProps) {
   // percentages derived from the 189×142 container referenced to 256×192
   // overall screen size. values rounded to two decimal places where needed.
   // height percentages:
@@ -80,12 +85,22 @@ export function BottomScreenBoxes() {
     return () => window.removeEventListener('resize', updateBounds);
   }, [updateBounds]);
 
+  // Map index to section name
+  const getSectionName = (index: number): string => {
+    const sections = ['About Me', 'Skills', 'Experience', 'Projects'];
+    return sections[index];
+  };
+
   // helper to handle click and hover events
   const handleMouseEnter = (i: number) => () => setHoveredIndex(i);
   const handleMouseLeave = () => setHoveredIndex(null);
   const handleClick = (i: number) => () => {
     setSelectedIndex(i);
     if (clickSound.current) clickSound.current.play();
+    // Notify parent when box is selected
+    if (onBoxSelect) {
+      onBoxSelect(getSectionName(i));
+    }
   };
 
   return (
@@ -129,7 +144,7 @@ export function BottomScreenBoxes() {
           onClick={handleClick(1)}
           className="w-[49.21%] h-full border-2 border-black box-gradient flex items-center justify-center p-[3%] cursor-pointer"
         >
-          <span className="text-[clamp(1rem,3vw,2rem)] font-medium">Box 2</span>
+          <span className="text-[clamp(1rem,3vw,2rem)] font-medium">Skills</span>
         </div>
         <div
           ref={(el) => { boxRefs.current[2] = el; }}
@@ -138,7 +153,7 @@ export function BottomScreenBoxes() {
           onClick={handleClick(2)}
           className="w-[49.21%] h-full border-2 border-black box-gradient flex items-center justify-center p-[3%] cursor-pointer"
         >
-          <span className="text-[clamp(1rem,3vw,2rem)] font-medium">Box 3</span>
+          <span className="text-[clamp(1rem,3vw,2rem)] font-medium">Experience</span>
         </div>
       </div>
 
@@ -151,7 +166,7 @@ export function BottomScreenBoxes() {
         className="relative w-full h-[32.39%] border-2 border-black box-gradient cursor-pointer"
       >
         <div className="absolute right-[1%] top-1/2 -translate-y-1/2 w-[75.13%] h-[89.13%] bg-white flex items-center justify-center border border-gray-300">
-          <span className="text-[clamp(1rem,3vw,2rem)] font-medium text-black">Box 4</span>
+          <span className="text-[clamp(1rem,3vw,2rem)] font-medium text-black">Projects</span>
         </div>
       </div>
     </motion.div>

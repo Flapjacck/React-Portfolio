@@ -70,7 +70,7 @@ export function TopScreenHeader({
       animate={{ y: 0 }}
       transition={{ type: 'spring', stiffness: 300, damping: 30 }}
       className="relative top-0 left-0 w-full h-[8.333%] \
-        bg-linear-to-b from-(--screen-bg-primary) to-(--screen-border) \
+        bg-linear-to-t from-[#61829a] to-[#99adbb] \
         flex items-center justify-between px-4"
     >
       {/* left‑aligned name */}
