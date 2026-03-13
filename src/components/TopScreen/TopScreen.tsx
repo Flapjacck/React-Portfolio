@@ -8,8 +8,14 @@
 
 import type { ReactNode } from 'react';
 import { TopScreenHeader } from './TopScreenHeader';
+import { AboutMe } from './AboutMe';
+import { Skills } from './Skills';
+import { Experience } from './Experience';
+import { Projects } from './Projects';
 import { motion } from 'framer-motion';
 // TopScreenHeader displays the name, clock, and social icons;
+
+export type SectionType = 'About Me' | 'Skills' | 'Experience' | 'Projects';
 
 export interface TopScreenProps {
   /** Content to render inside the top screen */
@@ -18,6 +24,8 @@ export interface TopScreenProps {
   hideHeader?: boolean;
   /** determine whether the DS grid background should be shown */
   showGrid?: boolean;
+  /** Current selected section from bottom screen */
+  selectedSection?: SectionType;
 }
 
 /**
@@ -25,7 +33,23 @@ export interface TopScreenProps {
  * @param children - Content to display on the top screen
  * @returns Top screen component with 4:3 aspect ratio
  */
-export function TopScreen({ children, hideHeader = false, showGrid = true }: TopScreenProps) {
+export function TopScreen({ children, hideHeader = false, showGrid = true, selectedSection = 'About Me' }: TopScreenProps) {
+  // Render the appropriate section component based on selectedSection
+  const renderSection = () => {
+    switch (selectedSection) {
+      case 'About Me':
+        return <AboutMe />;
+      case 'Skills':
+        return <Skills />;
+      case 'Experience':
+        return <Experience />;
+      case 'Projects':
+        return <Projects />;
+      default:
+        return <AboutMe />;
+    }
+  };
+
   // Add margin and responsive padding for gap
   return (
     <div className="ds-screen aspect-4/3 w-full flex-none flex items-center justify-center min-w-0">
@@ -50,9 +74,7 @@ export function TopScreen({ children, hideHeader = false, showGrid = true }: Top
           {children ? (
             children
           ) : (
-            <div className="text-center text-gray-500">
-              <p className="text-sm font-medium">Top Screen</p>
-            </div>
+            renderSection()
           )}
         </div>
       </motion.div>

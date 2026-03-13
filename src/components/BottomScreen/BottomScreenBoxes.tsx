@@ -18,7 +18,12 @@ import { useState, useRef, useLayoutEffect, useEffect, useCallback } from 'react
 import { Howl } from 'howler';
 import { BoxSelector } from './BoxSelector';
 
-export function BottomScreenBoxes() {
+interface BottomScreenBoxesProps {
+  /** Callback when a box is selected (clicked) */
+  onBoxSelect?: (section: string) => void;
+}
+
+export function BottomScreenBoxes({ onBoxSelect }: BottomScreenBoxesProps) {
   // percentages derived from the 189×142 container referenced to 256×192
   // overall screen size. values rounded to two decimal places where needed.
   // height percentages:
@@ -80,12 +85,22 @@ export function BottomScreenBoxes() {
     return () => window.removeEventListener('resize', updateBounds);
   }, [updateBounds]);
 
+  // Map index to section name
+  const getSectionName = (index: number): string => {
+    const sections = ['About Me', 'Skills', 'Experience', 'Projects'];
+    return sections[index];
+  };
+
   // helper to handle click and hover events
   const handleMouseEnter = (i: number) => () => setHoveredIndex(i);
   const handleMouseLeave = () => setHoveredIndex(null);
   const handleClick = (i: number) => () => {
     setSelectedIndex(i);
     if (clickSound.current) clickSound.current.play();
+    // Notify parent when box is selected
+    if (onBoxSelect) {
+      onBoxSelect(getSectionName(i));
+    }
   };
 
   return (
