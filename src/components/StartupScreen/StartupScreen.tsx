@@ -135,19 +135,19 @@ export function StartupScreen({
             animate={{ opacity: isExiting ? 0 : 1 }}
             transition={{ duration: 0.6, ease: 'easeInOut' }}
           >
-            <div className="flex flex-col items-center justify-center text-center px-4 gap-3">
+            <div className="flex flex-col items-center justify-center text-center px-2 sm:px-3 md:px-4 gap-2 sm:gap-3">
               {/* Bold heading */}
-              <p className="text-5xl sm:text-6xl md:text-7xl font-bold text-[var(--content-text, #2a2a2a)]">
+              <p className="text-[clamp(1.5rem,5vw,3.5rem)] font-bold text-[var(--content-text, #2a2a2a)]">
                 {heading}
               </p>
 
               {/* Body message - supports multiple lines */}
-              <p className="text-2xl sm:text-3xl leading-relaxed text-[var(--content-text, #2a2a2a)] whitespace-pre-line">
+              <p className="text-[clamp(0.875rem,2vw,1.5rem)] leading-snug text-[var(--content-text, #2a2a2a)] whitespace-pre-line">
                 {message}
               </p>
 
               {/* Continue prompt */}
-              <p className="text-2xl sm:text-3xl mt-2 text-[var(--content-text, #2a2a2a)] opacity-75 blink-text">
+              <p className="text-[clamp(0.75rem,1.8vw,1.25rem)] mt-2 text-[var(--content-text, #2a2a2a)] opacity-75 blink-text">
                 {continueText}
               </p>
             </div>
