@@ -165,6 +165,14 @@ export function BottomScreenBoxes({ onBoxSelect }: BottomScreenBoxesProps) {
         onClick={handleClick(3)}
         className="relative w-full h-[32.39%] border-2 border-black box-gradient cursor-pointer"
       >
+        {/* hammers icon positioned left, outside the inner rectangle */}
+        <img
+          src="/assets/hammers.webp"
+          alt="Hammers icon for projects"
+          className="absolute left-[12%] top-1/2 -translate-x-1/2 -translate-y-1/2 h-[60%] w-auto"
+        />
+
+        {/* inner white rectangle remains right-aligned */}
         <div className="absolute right-[1%] top-1/2 -translate-y-1/2 w-[75.13%] h-[89.13%] bg-white flex items-center justify-center border border-gray-300">
           <span className="text-[clamp(1rem,3vw,2rem)] font-medium text-black">Projects</span>
         </div>
