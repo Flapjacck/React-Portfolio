@@ -108,17 +108,17 @@ export function Skills() {
         return (
           <motion.div
             key={cat.name}
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.4, delay: ci * 0.08, ease: 'easeOut' }}
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.35, delay: ci * 0.07, ease: 'easeOut' }}
             className="flex flex-row items-start gap-[2%] flex-1 min-h-0 overflow-hidden"
           >
             {/* Category label */}
             <div className="flex-shrink-0 w-[22%] flex flex-col items-start justify-center h-full gap-[4%] pl-[2%]">
-              <span style={{ color: accent, fontSize: 'clamp(1.3rem, 3.2vw, 2rem)' }}>
+              <span style={{ color: accent, fontSize: 'clamp(1.3rem, 3.3vh, 2rem)' }}>
                 {CatIcon}
               </span>
-              <span className="text-[clamp(0.65rem,1.72vw,0.96rem)] font-bold leading-tight" style={{ color: accent }}>
+              <span className="text-[clamp(0.65rem,1.78vh,0.96rem)] font-bold leading-tight" style={{ color: accent }}>
                 {cat.name}
               </span>
             </div>
@@ -130,20 +130,19 @@ export function Skills() {
                 return (
                   <motion.span
                     key={skill}
-                    initial={{ opacity: 0, scale: 0.7 }}
-                    animate={{ opacity: 1, scale: 1 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
                     transition={{
-                      delay: 0.06 + ci * 0.08 + si * 0.02,
-                      type: 'spring',
-                      stiffness: 400,
-                      damping: 22,
+                      duration: 0.25,
+                      delay: ci * 0.07 + si * 0.015,
+                      ease: 'easeOut',
                     }}
-                    className="flex items-center gap-[4%] text-[clamp(0.7rem,1.82vw,1.04rem)] text-black whitespace-nowrap"
+                    className="flex items-center gap-[4%] text-[clamp(0.7rem,1.88vh,1.04rem)] text-black whitespace-nowrap"
                   >
                     {icon && (
                       <span
                         className="flex-shrink-0"
-                        style={{ fontSize: 'clamp(1.05rem, 2.5vw, 1.4rem)', color: accent }}
+                        style={{ fontSize: 'clamp(1.05rem, 2.6vh, 1.4rem)', color: accent }}
                       >
                         {icon}
                       </span>

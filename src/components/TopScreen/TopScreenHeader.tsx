@@ -64,17 +64,17 @@ export function TopScreenHeader({
 
   return (
     <motion.div
-      initial={{ y: '-100%' }}
-      animate={{ y: 0 }}
-      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+      initial={{ opacity: 0, y: -8 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.35, ease: 'easeOut' }}
       className="relative top-0 left-0 w-full h-[6%] flex-shrink-0
         bg-linear-to-t from-[#61829a] to-[#99adbb]
         flex items-center justify-between px-2"
     >
-      {/* left‑aligned name — whitespace-nowrap guarantees one line */}
+      {/* left‑aligned name — vh keeps it readable at all screen sizes */}
       <span
         className="whitespace-nowrap leading-none tracking-wide"
-        style={{ fontSize: 'clamp(0.5rem, 1.35vw, 0.75rem)' }}
+        style={{ fontSize: 'clamp(0.68rem, 1.75vh, 0.95rem)' }}
       >
         Spencer Kelly
       </span>
@@ -86,7 +86,7 @@ export function TopScreenHeader({
         <div className="px-2 flex items-center">
           <span
             className="font-medium"
-            style={{ fontSize: 'clamp(0.45rem, 1.2vw, 0.68rem)' }}
+            style={{ fontSize: 'clamp(0.6rem, 1.55vh, 0.84rem)' }}
           >
             {timeStr}
           </span>
@@ -97,7 +97,7 @@ export function TopScreenHeader({
         <div className="px-2 flex items-center">
           <span
             className="font-medium"
-            style={{ fontSize: 'clamp(0.45rem, 1.2vw, 0.68rem)' }}
+            style={{ fontSize: 'clamp(0.6rem, 1.55vh, 0.84rem)' }}
           >
             {dateStr}
           </span>
@@ -117,7 +117,7 @@ export function TopScreenHeader({
               src="/assets/Github_pixel.png"
               alt="GitHub logo"
               className="w-auto"
-              style={{ height: 'clamp(0.7rem, 1.8vw, 1rem)', imageRendering: 'pixelated' }}
+              style={{ height: 'clamp(0.75rem, 1.9vh, 1.05rem)', imageRendering: 'pixelated' }}
             />
           </a>
 
@@ -134,7 +134,7 @@ export function TopScreenHeader({
               src="/assets/Linkedin_pixel.png"
               alt="LinkedIn logo"
               className="w-auto"
-              style={{ height: 'clamp(0.7rem, 1.8vw, 1rem)', imageRendering: 'pixelated' }}
+              style={{ height: 'clamp(0.75rem, 1.9vh, 1.05rem)', imageRendering: 'pixelated' }}
             />
           </a>
         </div>
