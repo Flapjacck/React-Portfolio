@@ -71,22 +71,22 @@ export function Projects() {
           >
             {/* Title + link */}
             <div className="flex items-start justify-between gap-[3%] flex-shrink-0">
-              <p className="text-[clamp(0.72rem,2.18vh,1.15rem)] font-bold text-black leading-tight">
+              <p className="text-[clamp(0.72rem,2.1vw,1.15rem)] font-bold text-black leading-tight">
                 {proj.title}
               </p>
               <a
                 href={proj.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1 flex-shrink-0 border border-black bg-[#416179] text-white text-[clamp(0.44rem,1.14vh,0.62rem)] px-2 py-px uppercase tracking-wide hover:opacity-80 transition-opacity whitespace-nowrap"
+                className="flex items-center gap-1 flex-shrink-0 border border-black bg-[#416179] text-white text-[clamp(0.44rem,1.1vw,0.62rem)] px-2 py-px uppercase tracking-wide hover:opacity-80 transition-opacity whitespace-nowrap"
               >
-                <FaGithub style={{ fontSize: 'clamp(0.65rem,1.6vh,0.88rem)' }} />
-                <TbExternalLink style={{ fontSize: 'clamp(0.6rem,1.5vh,0.82rem)' }} />
+                <FaGithub style={{ fontSize: 'clamp(0.65rem,1.55vw,0.88rem)' }} />
+                <TbExternalLink style={{ fontSize: 'clamp(0.6rem,1.45vw,0.82rem)' }} />
               </a>
             </div>
 
             {/* Description — 2 lines max */}
-            <p className="text-[clamp(0.54rem,1.45vh,0.78rem)] text-black leading-relaxed line-clamp-2 flex-shrink-0">
+            <p className="text-[clamp(0.54rem,1.4vw,0.78rem)] text-black leading-relaxed line-clamp-2 flex-shrink-0">
               {proj.description}
             </p>
 
@@ -95,7 +95,7 @@ export function Projects() {
               {proj.technologies.map((tech) => (
                 <span
                   key={tech}
-                  className="border border-black bg-[#f5f1eb] text-black text-[clamp(0.42rem,1.08vh,0.6rem)] px-[2.5%] py-px whitespace-nowrap"
+                  className="border border-black bg-[#f5f1eb] text-black text-[clamp(0.42rem,1.05vw,0.6rem)] px-[2.5%] py-px whitespace-nowrap"
                 >
                   {tech}
                 </span>

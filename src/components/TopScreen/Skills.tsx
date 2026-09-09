@@ -115,10 +115,10 @@ export function Skills() {
           >
             {/* Category label */}
             <div className="flex-shrink-0 w-[22%] flex flex-col items-start justify-center h-full gap-[4%] pl-[2%]">
-              <span style={{ color: accent, fontSize: 'clamp(1.3rem, 3.3vh, 2rem)' }}>
+              <span style={{ color: accent, fontSize: 'clamp(1.3rem, 3.2vw, 2rem)' }}>
                 {CatIcon}
               </span>
-              <span className="text-[clamp(0.65rem,1.78vh,0.96rem)] font-bold leading-tight" style={{ color: accent }}>
+              <span className="text-[clamp(0.65rem,1.72vw,0.96rem)] font-bold leading-tight" style={{ color: accent }}>
                 {cat.name}
               </span>
             </div>
@@ -137,12 +137,12 @@ export function Skills() {
                       delay: ci * 0.07 + si * 0.015,
                       ease: 'easeOut',
                     }}
-                    className="flex items-center gap-[4%] text-[clamp(0.7rem,1.88vh,1.04rem)] text-black whitespace-nowrap"
+                    className="flex items-center gap-[4%] text-[clamp(0.7rem,1.82vw,1.04rem)] text-black whitespace-nowrap"
                   >
                     {icon && (
                       <span
                         className="flex-shrink-0"
-                        style={{ fontSize: 'clamp(1.05rem, 2.6vh, 1.4rem)', color: accent }}
+                        style={{ fontSize: 'clamp(1.05rem, 2.5vw, 1.4rem)', color: accent }}
                       >
                         {icon}
                       </span>
