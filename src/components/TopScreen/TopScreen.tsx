@@ -53,24 +53,20 @@ export function TopScreen({ children, hideHeader = false, showGrid = true, selec
   // Add margin and responsive padding for gap
   return (
     <div className="ds-screen aspect-4/3 w-full flex-none flex items-center justify-center min-w-0">
-      {/* content area becomes relative so header can be absolute */}
+      {/* flex-col so header takes its natural height and content fills the rest */}
       <motion.div
         className={`ds-screen-content ${
           showGrid ? 'top-screen-grid' : ''
-        } relative w-full h-full`}
+        } relative w-full h-full flex flex-col`}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, ease: 'easeInOut' }}
       >
-        {/* fixed-height header bar at top, or nothing when hidden */}
+        {/* header sits at top and takes only its own height */}
         {!hideHeader && <TopScreenHeader />}
 
-        {/* main body shifted down by header height when header visible */}
-        <div
-          className={`w-full h-full flex items-center justify-center p-2 md:p-3 lg:p-4 ${
-            !hideHeader ? 'pt-[8.333%]' : ''
-          }`}
-        >
+        {/* content fills exactly the remaining space — no overflow */}
+        <div className="flex-1 min-h-0 flex items-center justify-center p-2 md:p-3 lg:p-4">
           {children ? (
             children
           ) : (

@@ -56,84 +56,91 @@ export function TopScreenHeader({
 
   
   /*
-    DS Lite Header Enhancement:
-      - Increased spacing: 1px bordered separators with 1.5rem padding
-      - Separators placed between time, date, and social icons
-      - Authentic DS aesthetic with vertical lines dividing content sections
-    All percentages derived from original 256px-wide DS display.
+    DS Lite Header — compact pixelated bar.
+    Height reduced to ~6% of screen (≈12 DS pixels) so more content
+    is visible below. Name always kept on one line via whitespace-nowrap.
+    All text uses the DS-BIOS bitmap font for an authentic pixel look.
   */
 
   return (
     <motion.div
-      // slide in from above when the component mounts
       initial={{ y: '-100%' }}
       animate={{ y: 0 }}
       transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-      className="relative top-0 left-0 w-full h-[8.333%] \
-        bg-linear-to-t from-[#61829a] to-[#99adbb] \
-        flex items-center justify-between px-4"
+      className="relative top-0 left-0 w-full h-[6%] flex-shrink-0
+        bg-linear-to-t from-[#61829a] to-[#99adbb]
+        flex items-center justify-between px-2"
     >
-      {/* left‑aligned name */}
-      <span className="text-2xl leading-none">Spencer Kelly</span>
+      {/* left‑aligned name — whitespace-nowrap guarantees one line */}
+      <span
+        className="whitespace-nowrap leading-none tracking-wide"
+        style={{ fontSize: 'clamp(0.5rem, 1.35vw, 0.75rem)' }}
+      >
+        Spencer Kelly
+      </span>
 
-      {/* right group: time, date, github, linkedin
-          with ds lite separator lines extending full header height */}
+      {/* right group: time | date | github | linkedin */}
       <div className="flex items-center justify-end gap-0 h-full">
-        {/* Separator line (left side) */}
-        <div className="h-full border-r-2 border-slate-600 border-dashed" />
+        <div className="h-full border-r border-slate-600 border-dashed" />
 
-        {/* Time Section */}
-        <div className="px-3 flex items-center">
-          <span className="text-2xl font-medium">{timeStr}</span>
+        <div className="px-2 flex items-center">
+          <span
+            className="font-medium"
+            style={{ fontSize: 'clamp(0.45rem, 1.2vw, 0.68rem)' }}
+          >
+            {timeStr}
+          </span>
         </div>
 
-        {/* Separator line */}
-        <div className="h-full border-r-2 border-slate-600 border-dashed" />
+        <div className="h-full border-r border-slate-600 border-dashed" />
 
-        {/* Date Section */}
-        <div className="px-3 flex items-center">
-          <span className="text-2xl font-medium">{dateStr}</span>
+        <div className="px-2 flex items-center">
+          <span
+            className="font-medium"
+            style={{ fontSize: 'clamp(0.45rem, 1.2vw, 0.68rem)' }}
+          >
+            {dateStr}
+          </span>
         </div>
 
-        {/* Separator line */}
-        <div className="h-full border-r-2 border-slate-600 border-dashed" />
+        <div className="h-full border-r border-slate-600 border-dashed" />
 
-        {/* Social Icons Section */}
-        <div className="pl-3 pr-0 h-full flex items-center space-x-3">
+        <div className="pl-2 pr-0 h-full flex items-center space-x-2">
           <a
             href={githubUrl}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
-            className="transition-opacity hover:opacity-70"
+            className="transition-opacity hover:opacity-70 flex items-center"
           >
             <img
               src="/assets/Github_pixel.png"
               alt="GitHub logo"
-              className="h-6 w-auto"
+              className="w-auto"
+              style={{ height: 'clamp(0.7rem, 1.8vw, 1rem)', imageRendering: 'pixelated' }}
             />
           </a>
 
-          {/* Separator line (between icons) */}
-          <div className="h-full border-r-2 border-slate-600 border-dashed" />
+          <div className="h-full border-r border-slate-600 border-dashed" />
 
           <a
             href={linkedinUrl}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
-            className="transition-opacity hover:opacity-70"
+            className="transition-opacity hover:opacity-70 flex items-center"
           >
             <img
               src="/assets/Linkedin_pixel.png"
               alt="LinkedIn logo"
-              className="h-6 w-auto"
+              className="w-auto"
+              style={{ height: 'clamp(0.7rem, 1.8vw, 1rem)', imageRendering: 'pixelated' }}
             />
           </a>
         </div>
       </div>
 
-      {/* black line (2px) at bottom, inside header */}
+      {/* 2px pixel-border at bottom */}
       <div className="absolute bottom-0 left-0 w-full h-0.5 bg-black" />
     </motion.div>
   );
