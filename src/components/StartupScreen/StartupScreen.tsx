@@ -120,7 +120,7 @@ export function StartupScreen({
         </TopScreen>
 
         {/* Bottom Screen - Warning text with fade animation, hide grid */}
-        <BottomScreen showGrid={false}>
+        <BottomScreen showGrid={false} showPokemon={false}>
           <motion.div
             className="flex items-center justify-center h-full w-full cursor-pointer"
             role="button"
