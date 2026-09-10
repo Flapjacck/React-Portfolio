@@ -14,18 +14,13 @@ export function AboutMe() {
   return (
     <div className="w-full h-full flex flex-row gap-0 overflow-hidden">
       {/* ── Left: headshot ── */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.4, ease: "easeOut" }}
-        className="w-[38%] flex-shrink-0 h-full border-r-2 border-black overflow-hidden"
-      >
+      <div className="w-[38%] shrink-0 h-full border-r-2 border-black overflow-hidden">
         <img
           src="/assets/Headshot.webp"
           alt="Spencer Kelly"
           className="w-full h-full object-cover object-top"
         />
-      </motion.div>
+      </div>
 
       {/* ── Right: info ── */}
       <div className="flex-1 flex flex-col justify-center gap-[5%] px-[4%] py-[3%] min-w-0 h-full">
@@ -70,13 +65,13 @@ export function AboutMe() {
           {/* Line 1: degree · institution */}
           <div className="flex items-center gap-[2.5%] min-w-0">
             <FaGraduationCap
-              className="flex-shrink-0 text-[#416179]"
+              className="shrink-0 text-[#416179]"
               style={{ fontSize: "clamp(0.75rem,1.9vw,1.05rem)" }}
             />
             <span className="text-[clamp(0.65rem,1.7vw,0.96rem)] font-bold text-black whitespace-nowrap truncate">
               {education.degree}
             </span>
-            <span className="text-[#416179] flex-shrink-0">·</span>
+            <span className="text-[#416179] shrink-0">·</span>
             <span className="text-[clamp(0.65rem,1.7vw,0.96rem)] text-black whitespace-nowrap truncate">
               {education.institution}
             </span>
@@ -85,19 +80,19 @@ export function AboutMe() {
           {/* Line 2: location · year · year-label */}
           <div className="flex items-center gap-[2.5%] min-w-0">
             <FaMapMarkerAlt
-              className="flex-shrink-0 text-[#416179]"
+              className="shrink-0 text-[#416179]"
               style={{ fontSize: "clamp(0.75rem,1.9vw,1.05rem)" }}
             />
             <span className="text-[clamp(0.65rem,1.7vw,0.96rem)] text-black whitespace-nowrap">
               Waterloo, Ontario
             </span>
-            <span className="text-[#416179] flex-shrink-0">·</span>
+            <span className="text-[#416179] shrink-0">·</span>
             <FaCalendarAlt
-              className="flex-shrink-0 text-[#416179]"
+              className="shrink-0 text-[#416179]"
               style={{ fontSize: "clamp(0.75rem,1.9vw,1.05rem)" }}
             />
             <span className="text-[clamp(0.65rem,1.7vw,0.96rem)] text-black whitespace-nowrap">
-              {education.year} · 3rd Year
+              {education.year} · 4th Year
             </span>
           </div>
         </motion.div>

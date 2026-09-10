@@ -16,11 +16,12 @@ import {
   SiMarkdown, SiGnubash,
 } from 'react-icons/si';
 import {
-  SiReact, SiNextdotjs, SiNodedotjs, SiExpress, SiFastapi,
+  SiReact, SiNextdotjs, SiAstro, SiNodedotjs, SiExpress, SiFastapi,
   SiTailwindcss, SiPytorch, SiTensorflow, SiFlask,
 } from 'react-icons/si';
 import {
-  SiGit, SiGithub, SiDocker, SiLinux, SiVite, SiPnpm,   SiRender, SiVercel,
+  SiGit, SiGithub, SiCursor, SiDocker, SiLinux, SiVite, SiPnpm, SiProxmox,
+  SiRender, SiVercel, SiCloudflare, SiKubernetes,
   SiNginx, SiMongodb, SiPostgresql, SiRedis, SiSqlite,
 } from 'react-icons/si';
 
@@ -31,7 +32,7 @@ import { FaJava } from 'react-icons/fa';
 import {
   TbBrandVscode, TbBrandAws, TbBrandAzure,
   TbCpu, TbDatabase, TbTable, TbLock, TbShieldCheck,
-  TbGitBranch, TbTerminal2, TbServer,
+  TbGitBranch, TbTerminal2,
   TbCode, TbRocket, TbTool, TbCloud,
 } from 'react-icons/tb';
 
@@ -51,6 +52,7 @@ const ICONS: Record<string, ReactElement> = {
   VBA:                <TbTable />,
   React:              <SiReact />,
   'Next.js':          <SiNextdotjs />,
+  Astro:              <SiAstro />,
   'Node.js':          <SiNodedotjs />,
   'Express.js':       <SiExpress />,
   FastAPI:            <SiFastapi />,
@@ -67,14 +69,17 @@ const ICONS: Record<string, ReactElement> = {
   Vite:               <SiVite />,
   PNPM:               <SiPnpm />,
   'VS Code':          <TbBrandVscode />,
+  Cursor:             <SiCursor />,
   QEMU:               <TbCpu />,
+  Proxmox:            <SiProxmox />,
   'Shell scripting':  <TbTerminal2 />,
-  LXC:                <TbServer />,
   UNIX:               <TbTerminal2 />,
   AWS:                <TbBrandAws />,
   Azure:              <TbBrandAzure />,
+  Kubernetes:         <SiKubernetes />,
   Vercel:             <SiVercel />,
   Render:             <SiRender />,
+  Cloudflare:         <SiCloudflare />,
   Nginx:              <SiNginx />,
   'CI/CD':            <TbGitBranch />,
   MongoDB:            <SiMongodb />,
@@ -125,18 +130,11 @@ export function Skills() {
 
             {/* Skills — icon + text, no boxes */}
             <div className="flex-1 flex flex-wrap items-center content-center gap-x-[2%] gap-y-[2%] h-full overflow-hidden">
-              {cat.skills.map((skill, si) => {
+              {cat.skills.map((skill) => {
                 const icon = ICONS[skill];
                 return (
-                  <motion.span
+                  <span
                     key={skill}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{
-                      duration: 0.25,
-                      delay: ci * 0.07 + si * 0.015,
-                      ease: 'easeOut',
-                    }}
                     className="flex items-center gap-[4%] text-[clamp(0.7rem,1.82vw,1.04rem)] text-black whitespace-nowrap"
                   >
                     {icon && (
@@ -148,7 +146,7 @@ export function Skills() {
                       </span>
                     )}
                     {skill}
-                  </motion.span>
+                  </span>
                 );
               })}
             </div>
