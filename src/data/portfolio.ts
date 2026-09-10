@@ -19,14 +19,6 @@ export interface ProjectProps {
 
 export const projects: ProjectProps[] = [
   {
-    title: "ScheduleApp",
-    description:
-      "Full-stack MERN application built with a 9-member Agile team to streamline applicant tracking and interview scheduling for 100+ club members, featuring clean TypeScript code and scalable architecture.",
-    technologies: ["React", "Node.js", "MongoDB", "TypeScript", "Express"],
-    link: "https://github.com/LaurierCS/ScheduleApp",
-    image: "https://opengraph.githubassets.com/1/LaurierCS/ScheduleApp",
-  },
-  {
     title: "MoxBox",
     description: "Lightweight Self-Hosted File Storage Platform.",
     technologies: ["React", "TypeScript", "Vite", "Node.js", "Express", "Proxmox"],
@@ -62,19 +54,10 @@ export const projects: ProjectProps[] = [
   {
     title: "Portfolio Website",
     description:
-      "Modern portfolio website using TypeScript, React, and Tailwind CSS, showcasing projects, skills, and experience with a sleek, responsive design.",
+      "This Site",
     technologies: ["React", "TypeScript", "Tailwind"],
     link: "https://github.com/Flapjacck/React-Portfolio",
-    image: "https://i.imgur.com/FUCnYMC.jpeg",
-  },
-  {
-    title: "Solution-Stash",
-    description:
-      "Repo to show my solutions for LeetCode. Most questions will be written in the C or Java Language.",
-    technologies: ["C", "Java", "Markdown"],
-    link: "https://github.com/Flapjacck/Solution-Stash",
-    image:
-      "https://raw.githubusercontent.com/Flapjacck/Solution-Stash/refs/heads/main/images/solutionlogo.png",
+    image: "https://m.media-amazon.com/images/I/5103LmIExkL._AC_UF1000,1000_QL80_.jpg",
   },
   {
     title: "Simple-Blackjack",
@@ -83,7 +66,7 @@ export const projects: ProjectProps[] = [
     technologies: ["C"],
     link: "https://github.com/Flapjacck/Simple-Blackjack",
     image:
-      "https://camo.githubusercontent.com/b6a62237152e84a40e71bbbd5bb68d868d226d1a0874c232e8887f610ec9b0d4/68747470733a2f2f692e696d6775722e636f6d2f6a486f4c62314a2e706e67",
+      "https://camo.githubusercontent.com/929b912b215ad22643187c818ad6a3eb9b88f96c7184c8a292a9a060b8d98f77/68747470733a2f2f736f6369616c6966792e6769742e63692f466c61706a6163636b2f53696d706c652d426c61636b4a61636b2f696d6167653f6465736372697074696f6e3d31266465736372697074696f6e4564697461626c653d47616d652532306f66253230426c61636b6a61636b2532306d616465253230696e2532307468652532304325323070726f6772616d6d696e672532306c616e67756167652e25323043726561746564253230746f25323064656570656e2532306d79253230756e6465727374616e64696e672532306f66253230746865253230432532306c616e6775616765253230616e642532306769742e266c616e67756167653d31266e616d653d31267061747465726e3d506c7573267374617267617a6572733d31267468656d653d4461726b",
   },
 ];
 
@@ -110,7 +93,7 @@ export const skillCategories: SkillCategory[] = [
     name: "Frameworks & Libraries",
     iconName: "Rocket",
     skills: [
-      "React", "Next.js", "Node.js", "Express.js", "FastAPI",
+      "React", "Next.js", "Astro", "Node.js", "Express.js", "FastAPI",
       "Tailwind", "PyTorch", "TensorFlow", "JWT", "Bcrypt", "Flask",
     ],
   },
@@ -118,15 +101,15 @@ export const skillCategories: SkillCategory[] = [
     name: "Tools & Platforms",
     iconName: "Wrench",
     skills: [
-      "Git", "GitHub", "VS Code", "Linux", "Docker",
-      "Vite", "QEMU", "PNPM", "Shell scripting", "LXC", "UNIX",
+      "Git", "GitHub", "VS Code", "Cursor", "Linux", "Docker",
+      "Vite", "QEMU", "Proxmox", "PNPM", "Shell scripting", "UNIX",
     ],
   },
   {
     name: "DevOps & Databases",
     iconName: "Cloud",
     skills: [
-      "AWS", "Azure", "Vercel", "Render", "Nginx",
+      "AWS", "Azure", "Kubernetes", "Vercel", "Render", "Cloudflare", "Nginx",
       "CI/CD", "MongoDB", "PostgreSQL", "Redis", "SQLite",
     ],
   },
