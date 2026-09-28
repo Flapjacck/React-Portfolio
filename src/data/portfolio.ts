@@ -19,6 +19,14 @@ export interface ProjectProps {
 
 export const projects: ProjectProps[] = [
   {
+    title: "LOCAH.ai",
+    description:
+      "SU-sponsored retrieval assistant over Laurier's public information — cited answers for student questions.",
+    technologies: ["FastAPI", "Next.js", "PostgreSQL", "pgvector", "RAG"],
+    link: "https://github.com/LaurierCS/locah-ai",
+    image: "https://opengraph.githubassets.com/1/LaurierCS/locah-ai",
+  },
+  {
     title: "MoxBox",
     description: "Lightweight Self-Hosted File Storage Platform.",
     technologies: ["React", "TypeScript", "Vite", "Node.js", "Express", "Proxmox"],
@@ -86,7 +94,7 @@ export const skillCategories: SkillCategory[] = [
     iconName: "Code2",
     skills: [
       "Python", "JavaScript", "TypeScript", "C", "Assembly",
-      "Java", "SQL", "HTML5", "CSS3", "Markdown", "Bash", "VBA",
+      "Java", "SQL", "HTML5", "CSS3", "Markdown", "Bash", "VBA", "Go",
     ],
   },
   {
@@ -101,7 +109,7 @@ export const skillCategories: SkillCategory[] = [
     name: "Tools & Platforms",
     iconName: "Wrench",
     skills: [
-      "Git", "GitHub", "VS Code", "Cursor", "Linux", "Docker",
+      "Git", "GitHub", "VS Code", "Cursor", "Linux", "Docker", "LXC",
       "Vite", "QEMU", "Proxmox", "PNPM", "Shell scripting", "UNIX",
     ],
   },
@@ -131,23 +139,33 @@ export interface WorkExperienceProps {
 
 export const workExperiences: WorkExperienceProps[] = [
   {
-    company: "Laurier Computing Society",
-    role: "Software Engineer",
+    company: "CS Digital",
+    role: "Co-Founder & Technical Lead",
+    location: "Hamilton, Ontario",
+    period: "Jul 2026 – Present",
+    logo: "/assets/CSlogo.png",
+    description:
+      "Co-founded CS Digital and build custom, performance-first websites for local service businesses, plus on-page and local SEO including Google Business Profile and Local Service Ads.",
+    isCurrent: true,
+  },
+  {
+    company: "Laurier Computing Society (LCS)",
+    role: "Vice President of Engineering",
     location: "Waterloo, Ontario",
     period: "Sept 2025 – Present",
     logo: "/assets/lauriercs_logo.webp",
     description:
-      "Developing full-stack MERN applications for 100+ club members, contributing to open-source projects in an Agile team environment.",
+      "Lead engineering on LOCAH.ai (FastAPI, Next.js, pgvector), run weekly stand-ups and code reviews with 10+ engineers, and keep the main repo moving through PR triage and review standards.",
     isCurrent: true,
   },
   {
     company: "Super Sucker Hydro Vac Service Inc.",
-    role: "Mobile Parts and Inventory",
+    role: "Mobile Parts and Inventory Coordinator",
     location: "Hamilton, Ontario",
-    period: "April 2025 – Aug 2025",
+    period: "Apr 2025 – Aug 2025 · May 2026 – Aug 2026",
     logo: "/assets/super_sucker_logo.webp",
     description:
-      "Managed $500K+ inventory and optimized delivery routes, reducing equipment downtime by 15%.",
+      "Managed $500K+ in parts inventory across 7 yard locations, ran regular audits, and kept records current for 10+ supervisors and field technicians.",
     isCurrent: false,
   },
 ];

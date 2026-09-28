@@ -13,7 +13,7 @@ import { skillCategories } from '../../data/portfolio';
 // Simple Icons (SI)
 import {
   SiPython, SiJavascript, SiTypescript, SiHtml5, SiCss,
-  SiMarkdown, SiGnubash,
+  SiMarkdown, SiGnubash, SiGo,
 } from 'react-icons/si';
 import {
   SiReact, SiNextdotjs, SiAstro, SiNodedotjs, SiExpress, SiFastapi,
@@ -32,7 +32,7 @@ import { FaJava } from 'react-icons/fa';
 import {
   TbBrandVscode, TbBrandAws, TbBrandAzure,
   TbCpu, TbDatabase, TbTable, TbLock, TbShieldCheck,
-  TbGitBranch, TbTerminal2,
+  TbGitBranch, TbTerminal2, TbBox,
   TbCode, TbRocket, TbTool, TbCloud,
 } from 'react-icons/tb';
 
@@ -45,6 +45,7 @@ const ICONS: Record<string, ReactElement> = {
   CSS3:               <SiCss />,
   Markdown:           <SiMarkdown />,
   Bash:               <SiGnubash />,
+  Go:                 <SiGo />,
   Java:               <FaJava />,
   C:                  <TbCode />,
   Assembly:           <TbCpu />,
@@ -65,6 +66,7 @@ const ICONS: Record<string, ReactElement> = {
   Git:                <SiGit />,
   GitHub:             <SiGithub />,
   Docker:             <SiDocker />,
+  LXC:                <TbBox />,
   Linux:              <SiLinux />,
   Vite:               <SiVite />,
   PNPM:               <SiPnpm />,
