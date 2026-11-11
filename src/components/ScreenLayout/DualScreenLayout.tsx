@@ -4,8 +4,7 @@
  * Shared viewport-locked wrapper for the two DS screens. Arranges the top
  * and bottom screens according to the chosen layout:
  *   - vertical: top screen stacked above the touch screen (original look)
- *   - side-top-left: side by side, top screen on the left
- *   - side-top-right: side by side, top screen on the right
+ *   - side-by-side: top screen on the left, touch screen on the right
  * Side-by-side sizing lives in index.css (.ds-screens-side). The element tree
  * is identical for every layout so child state (e.g. the selected box) is
  * kept when rotating. Also renders the fixed rotate button.
@@ -31,8 +30,7 @@ export interface DualScreenLayoutProps {
 // breakpoint up, below that the screens stay stacked (too small otherwise)
 const LAYOUT_CLASSES: Record<ScreenLayout, string> = {
   vertical: 'max-w-(--screen-max-width) flex-col',
-  'side-top-left': 'ds-screens-side max-w-(--screen-max-width) sm:max-w-none flex-col sm:flex-row',
-  'side-top-right': 'ds-screens-side max-w-(--screen-max-width) sm:max-w-none flex-col sm:flex-row-reverse',
+  'side-by-side': 'ds-screens-side max-w-(--screen-max-width) sm:max-w-none flex-col sm:flex-row',
 };
 
 /**

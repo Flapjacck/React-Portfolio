@@ -2,8 +2,8 @@
  * LayoutToggle.tsx
  *
  * Small DS-style rotate button pinned to the top-left corner of the page.
- * Each press cycles the dual screens through the three layouts (vertical,
- * side by side with the top screen left, side by side with it right). It
+ * Each press toggles the dual screens between the vertical layout and side
+ * by side (top screen left, touch screen right). It
  * uses the same blue gradient as the top screen header so it reads clearly
  * against the black backdrop. Hidden below the `sm` breakpoint, where the
  * screens always stack vertically.
@@ -20,14 +20,14 @@ import {
 export interface LayoutToggleProps {
   /** Layout currently applied to the screens */
   layout: ScreenLayout;
-  /** Called when the button is pressed to move to the next layout */
+  /** Called when the button is pressed to switch to the other layout */
   onCycle: () => void;
 }
 
 /**
  * Renders the fixed rotate button
  * @param layout - Current screen layout (used for the label)
- * @param onCycle - Callback that advances to the next layout
+ * @param onCycle - Callback that switches to the other layout
  * @returns Fixed top-left layout button
  */
 export function LayoutToggle({ layout, onCycle }: LayoutToggleProps) {
