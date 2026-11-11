@@ -80,9 +80,22 @@ export function BottomScreenBoxes({ onBoxSelect }: BottomScreenBoxesProps) {
     updateBounds();
   }, [updateBounds]);
 
+  // Re-measure whenever the boxes container changes size. A window resize
+  // alone isn't enough: switching the screen layout (vertical ↔ side by side)
+  // resizes the screens without firing a resize event.
   useEffect(() => {
-    window.addEventListener('resize', updateBounds);
-    return () => window.removeEventListener('resize', updateBounds);
+    const container = containerRef.current;
+    if (!container) return;
+
+    // fallback for browsers without ResizeObserver
+    if (typeof ResizeObserver === 'undefined') {
+      window.addEventListener('resize', updateBounds);
+      return () => window.removeEventListener('resize', updateBounds);
+    }
+
+    const observer = new ResizeObserver(() => updateBounds());
+    observer.observe(container);
+    return () => observer.disconnect();
   }, [updateBounds]);
 
   // Map index to section name
