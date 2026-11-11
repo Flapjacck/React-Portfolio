@@ -21,6 +21,11 @@
     --screen-width: 100%;
     --screen-max-width: 1024px;
 
+    /* Layout (rotate) button pinned top-left. The button is hidden below the
+       `sm` breakpoint (40rem), so no clearance is needed there */
+    --layout-btn-size: 2.5rem;
+    --layout-btn-clearance: 0px;
+
     /* Screen Colors */
     --screen-bg-primary: #e8ddd0;
     --screen-border: #d4a574;
@@ -30,6 +35,14 @@
     --content-border: #d0c4b8;
     /* selector used for bottom-screen box highlight */
     --selector-blue: #416179;
+}
+
+/* From `sm` up the rotate button is shown; screens keep this much clear space
+   (gap + button + gap) from the corner so they never sit under it */
+@media (width >= 40rem) {
+    :root {
+        --layout-btn-clearance: calc(var(--layout-btn-size) + 2 * var(--screen-gap));
+    }
 }
 
 /* Lock viewport - prevent scrolling */
@@ -65,14 +78,39 @@ body {
         width: auto;
         height: auto;
 
-        /* limit by design maximum width, but also shrink if height is the limiting factor */
+        /* VERTICAL layout (default): two screens stacked.
+           limit by design maximum width, but also shrink if height is the limiting factor */
         /* when height constraint dominates: width ≤ ((100vh - 3gap)/2) * 4/3 */
-        max-width: min(var(--screen-max-width),
-                calc((100vh - 3 * var(--screen-gap)) * 2 / 3));
+        /* last term keeps the rotate button clear: the stack must leave room for it
+           either beside it (width ≤ 100vw - 2 × clearance) or above it
+           (1.5 × width + gap ≤ 100vh - 2 × clearance). Only kicks in on viewports
+           where the stack would otherwise run under the button (e.g. portrait tablets) */
+        --ds-screen-max-w: min(var(--screen-max-width),
+                calc((100vh - 3 * var(--screen-gap)) * 2 / 3),
+                max(calc(100vw - 2 * var(--layout-btn-clearance)),
+                    calc((100vh - 2 * var(--layout-btn-clearance) - var(--screen-gap)) * 2 / 3)));
+        max-width: var(--ds-screen-max-w);
 
         /* prevent two stacked screens from overflowing viewport height; account for
-           padding and the gap between screens (3 × gap total vertical loss) */
-        max-height: calc((100vh - 3 * var(--screen-gap)) / 2);
+           padding and the gap between screens (3 × gap total vertical loss).
+           height always follows the 4:3 width cap */
+        max-height: calc(var(--ds-screen-max-w) * 3 / 4);
+    }
+
+    /* SIDE-BY-SIDE layouts: two screens in a row, sized off both viewport axes so
+       they fill as much space as possible without overflowing.
+         width-bound:  2 × width + 3 × gap ≤ 100vw  → width ≤ (100vw - 3gap) / 2
+         height-bound: width × 3/4 + 2 × gap ≤ 100vh → width ≤ (100vh - 2gap) × 4/3
+       plus the same rotate-button clearance rule as above. No 1024px cap here so
+       the screens can grow on wide displays. Below the `sm` breakpoint (40rem) the
+       screens stay stacked and keep the vertical sizing. */
+    @media (width >= 40rem) {
+        .ds-screens-side .ds-screen {
+            --ds-screen-max-w: min(calc((100vw - 3 * var(--screen-gap)) / 2),
+                    calc((100vh - 2 * var(--screen-gap)) * 4 / 3),
+                    max(calc((100vw - 2 * var(--layout-btn-clearance) - var(--screen-gap)) / 2),
+                        calc((100vh - 2 * var(--layout-btn-clearance)) * 4 / 3)));
+        }
     }
 
     .ds-screen-content {
