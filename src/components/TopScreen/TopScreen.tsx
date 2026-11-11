@@ -66,7 +66,8 @@ export function TopScreen({ children, hideHeader = false, showGrid = true, selec
         {!hideHeader && <TopScreenHeader />}
 
         {/* content fills exactly the remaining space — no overflow */}
-        <div className="flex-1 min-h-0 flex items-center justify-center p-2 md:p-3 lg:p-4">
+        {/* padding scales with the screen (≈16px on a 696px-wide screen) */}
+        <div className="flex-1 min-h-0 flex items-center justify-center p-[2.3cqw]">
           {children ? (
             children
           ) : (

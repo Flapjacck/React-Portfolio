@@ -5,8 +5,9 @@
  * is calculated to match a 16px-tall header on an original 256×192 display
  * (≈8.33% of the screen height). This version also shows the current time and
  * date in the DS-BIOS font, plus GitHub/LinkedIn icons on the right side.
- * All measurements are converted from DS pixels to percentages so the layout
- * scales with the screen.
+ * All measurements are converted from DS pixels to percentages, and text/icon
+ * sizes use cqw (percent of the screen width), so the header scales with the
+ * screen in every layout.
  */
 
 import { useState, useEffect } from 'react';
@@ -57,8 +58,8 @@ export function TopScreenHeader({
   
   /*
     DS Lite Header — compact pixelated bar.
-    Height reduced to ~6% of screen (≈12 DS pixels) so more content
-    is visible below. Name always kept on one line via whitespace-nowrap.
+    Height is 8% of the screen (≈15 DS pixels) so the larger name, clock and
+    icons fit. Name always kept on one line via whitespace-nowrap.
     All text uses the DS-BIOS bitmap font for an authentic pixel look.
   */
 
@@ -67,14 +68,14 @@ export function TopScreenHeader({
       initial={{ opacity: 0, y: -8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.35, ease: 'easeOut' }}
-      className="relative top-0 left-0 w-full h-[6%] flex-shrink-0
+      className="relative top-0 left-0 w-full h-[8%] flex-shrink-0
         bg-linear-to-t from-[#61829a] to-[#99adbb]
-        flex items-center justify-between px-2"
+        flex items-center justify-between px-[max(0.5rem,1.2cqw)]"
     >
       {/* left‑aligned name — improved min so it stays readable on mobile */}
       <span
         className="whitespace-nowrap leading-none tracking-wide"
-        style={{ fontSize: 'clamp(0.68rem, 1.35vw, 0.88rem)' }}
+        style={{ fontSize: 'max(0.8rem, 3cqw)' }}
       >
         Spencer Kelly
       </span>
@@ -83,10 +84,10 @@ export function TopScreenHeader({
       <div className="flex items-center justify-end gap-0 h-full">
         <div className="h-full border-r border-slate-600 border-dashed" />
 
-        <div className="px-2 flex items-center">
+        <div className="px-[max(0.5rem,1.2cqw)] flex items-center">
           <span
             className="font-medium"
-            style={{ fontSize: 'clamp(0.6rem, 1.2vw, 0.78rem)' }}
+            style={{ fontSize: 'max(0.7rem, 2.5cqw)' }}
           >
             {timeStr}
           </span>
@@ -94,10 +95,10 @@ export function TopScreenHeader({
 
         <div className="h-full border-r border-slate-600 border-dashed" />
 
-        <div className="px-2 flex items-center">
+        <div className="px-[max(0.5rem,1.2cqw)] flex items-center">
           <span
             className="font-medium"
-            style={{ fontSize: 'clamp(0.6rem, 1.2vw, 0.78rem)' }}
+            style={{ fontSize: 'max(0.7rem, 2.5cqw)' }}
           >
             {dateStr}
           </span>
@@ -105,7 +106,7 @@ export function TopScreenHeader({
 
         <div className="h-full border-r border-slate-600 border-dashed" />
 
-        <div className="pl-2 pr-0 h-full flex items-center space-x-2">
+        <div className="pl-[max(0.5rem,1.2cqw)] pr-0 h-full flex items-center space-x-[max(0.5rem,1.2cqw)]">
           <a
             href={githubUrl}
             target="_blank"
@@ -117,7 +118,7 @@ export function TopScreenHeader({
               src="/assets/Github_pixel.png"
               alt="GitHub logo"
               className="w-auto"
-              style={{ height: 'clamp(0.72rem, 1.8vw, 1rem)', imageRendering: 'pixelated' }}
+              style={{ height: 'max(0.9rem, 3.6cqw)', imageRendering: 'pixelated' }}
             />
           </a>
 
@@ -134,7 +135,7 @@ export function TopScreenHeader({
               src="/assets/Linkedin_pixel.png"
               alt="LinkedIn logo"
               className="w-auto"
-              style={{ height: 'clamp(0.72rem, 1.8vw, 1rem)', imageRendering: 'pixelated' }}
+              style={{ height: 'max(0.9rem, 3.6cqw)', imageRendering: 'pixelated' }}
             />
           </a>
         </div>
