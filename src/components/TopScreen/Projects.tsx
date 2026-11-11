@@ -5,6 +5,7 @@
  * No scroll anywhere. Tiles pop in with staggered spring.
  * ScheduleApp (index 0) is auto-selected on mount.
  * Info panel is compact — no repeated thumbnail, fits within screen.
+ * Text/icon sizes use cqw so they scale with the screen.
  */
 
 import { useState } from "react";
@@ -62,26 +63,26 @@ export function Projects() {
           >
             {/* Title + link */}
             <div className="flex items-start justify-between gap-[3%] shrink-0">
-              <p className="text-[clamp(0.72rem,2.1vw,1.15rem)] font-bold text-black leading-tight">
+              <p className="text-[length:max(0.72rem,2.64cqw)] font-bold text-black leading-tight">
                 {proj.title}
               </p>
               <a
                 href={proj.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1 shrink-0 border border-black bg-[#416179] text-white text-[clamp(0.44rem,1.1vw,0.62rem)] px-2 py-px uppercase tracking-wide hover:opacity-80 transition-opacity whitespace-nowrap"
+                className="flex items-center gap-[0.4em] shrink-0 border border-black bg-[#416179] text-white text-[length:max(0.44rem,1.43cqw)] px-[0.8em] py-[0.1em] uppercase tracking-wide hover:opacity-80 transition-opacity whitespace-nowrap"
               >
                 <FaGithub
-                  style={{ fontSize: "clamp(0.65rem,1.55vw,0.88rem)" }}
+                  style={{ fontSize: "max(0.65rem,2.02cqw)" }}
                 />
                 <TbExternalLink
-                  style={{ fontSize: "clamp(0.6rem,1.45vw,0.82rem)" }}
+                  style={{ fontSize: "max(0.6rem,1.89cqw)" }}
                 />
               </a>
             </div>
 
             {/* Description — 2 lines max */}
-            <p className="text-[clamp(0.54rem,1.4vw,0.78rem)] text-black leading-relaxed line-clamp-2 shrink-0">
+            <p className="text-[length:max(0.54rem,1.79cqw)] text-black leading-relaxed line-clamp-2 shrink-0">
               {proj.description}
             </p>
 
@@ -93,7 +94,7 @@ export function Projects() {
               {proj.technologies.map((tech) => (
                 <span
                   key={tech}
-                  className="border border-black bg-[#f5f1eb] text-black text-[clamp(0.42rem,1.05vw,0.6rem)] px-[2.5%] py-px whitespace-nowrap"
+                  className="border border-black bg-[#f5f1eb] text-black text-[length:max(0.42rem,1.38cqw)] px-[2.5%] py-px whitespace-nowrap"
                 >
                   {tech}
                 </span>

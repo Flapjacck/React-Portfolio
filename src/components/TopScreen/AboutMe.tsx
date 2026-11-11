@@ -4,6 +4,8 @@
  * About Me section. Headshot left, name/bio right.
  * Fills the full screen — no blank space.
  * All text black. Staggered entry animations.
+ * Text/icon sizes use cqw (percent of the screen width) so they scale with
+ * the screen; the rem minimums keep small phone screens readable.
  */
 
 import { motion } from "framer-motion";
@@ -22,15 +24,20 @@ export function AboutMe() {
         />
       </div>
 
-      {/* ── Right: info ── */}
-      <div className="flex-1 flex flex-col justify-center gap-[5%] px-[4%] py-[3%] min-w-0 h-full">
+      {/* ── Right: info ──
+          from `sm` up, small screens (e.g. side by side on a tablet) can need
+          more room than the screen has at the minimum font sizes, so the column
+          scrolls instead of cutting text off. "safe" centering keeps the top
+          reachable and the scrollbar is hidden so it never eats into the layout.
+          Below `sm` (phones) the screen still grows to fit, as before */}
+      <div className="flex-1 flex flex-col justify-center sm:justify-center-safe gap-[5%] px-[4%] py-[3%] min-w-0 h-full sm:overflow-y-auto sm:[scrollbar-width:none]">
         {/* Name block */}
         <div>
           <motion.h1
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35, delay: 0.06, ease: "easeOut" }}
-            className="text-[clamp(1.4rem,4.5vw,2.6rem)] font-bold leading-none text-black whitespace-nowrap"
+            className="text-[length:max(1.4rem,6cqw)] font-bold leading-none text-black whitespace-nowrap"
           >
             Spencer Kelly
           </motion.h1>
@@ -39,7 +46,7 @@ export function AboutMe() {
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35, delay: 0.12, ease: "easeOut" }}
-            className="text-[clamp(0.68rem,1.78vw,1rem)] text-black mt-[3%] leading-snug"
+            className="text-[length:max(0.68rem,2.3cqw)] text-black mt-[3%] leading-snug"
           >
             Computer Science Student
           </motion.p>
@@ -50,7 +57,7 @@ export function AboutMe() {
           initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.35, delay: 0.18, ease: "easeOut" }}
-          className="text-[clamp(0.7rem,1.85vw,1.04rem)] text-black leading-relaxed"
+          className="text-[length:max(0.7rem,2.39cqw)] text-black leading-relaxed"
         >
           {bio}
         </motion.p>
@@ -66,13 +73,13 @@ export function AboutMe() {
           <div className="flex items-center gap-[2.5%] min-w-0">
             <FaGraduationCap
               className="shrink-0 text-[#416179]"
-              style={{ fontSize: "clamp(0.75rem,1.9vw,1.05rem)" }}
+              style={{ fontSize: "max(0.75rem,2.41cqw)" }}
             />
-            <span className="text-[clamp(0.65rem,1.7vw,0.96rem)] font-bold text-black whitespace-nowrap truncate">
+            <span className="text-[length:max(0.65rem,2.21cqw)] font-bold text-black whitespace-nowrap truncate">
               {education.degree}
             </span>
-            <span className="text-[#416179] shrink-0">·</span>
-            <span className="text-[clamp(0.65rem,1.7vw,0.96rem)] text-black whitespace-nowrap truncate">
+            <span className="text-[length:max(0.65rem,2.21cqw)] text-[#416179] shrink-0">·</span>
+            <span className="text-[length:max(0.65rem,2.21cqw)] text-black whitespace-nowrap truncate">
               {education.institution}
             </span>
           </div>
@@ -81,17 +88,17 @@ export function AboutMe() {
           <div className="flex items-center gap-[2.5%] min-w-0">
             <FaMapMarkerAlt
               className="shrink-0 text-[#416179]"
-              style={{ fontSize: "clamp(0.75rem,1.9vw,1.05rem)" }}
+              style={{ fontSize: "max(0.75rem,2.41cqw)" }}
             />
-            <span className="text-[clamp(0.65rem,1.7vw,0.96rem)] text-black whitespace-nowrap">
+            <span className="text-[length:max(0.65rem,2.21cqw)] text-black whitespace-nowrap">
               Waterloo, Ontario
             </span>
-            <span className="text-[#416179] shrink-0">·</span>
+            <span className="text-[length:max(0.65rem,2.21cqw)] text-[#416179] shrink-0">·</span>
             <FaCalendarAlt
               className="shrink-0 text-[#416179]"
-              style={{ fontSize: "clamp(0.75rem,1.9vw,1.05rem)" }}
+              style={{ fontSize: "max(0.75rem,2.41cqw)" }}
             />
-            <span className="text-[clamp(0.65rem,1.7vw,0.96rem)] text-black whitespace-nowrap">
+            <span className="text-[length:max(0.65rem,2.21cqw)] text-black whitespace-nowrap">
               {education.year} · 4th Year
             </span>
           </div>
