@@ -4,6 +4,7 @@
  * Skills section. Four category rows filling the height.
  * Each skill shown as react-icons icon + name — no bordered boxes.
  * Category rows stagger in from the left.
+ * Text/icon sizes use cqw so they scale with the screen.
  */
 
 import { motion } from 'framer-motion';
@@ -122,10 +123,10 @@ export function Skills() {
           >
             {/* Category label */}
             <div className="flex-shrink-0 w-[22%] flex flex-col items-start justify-center h-full gap-[4%] pl-[2%]">
-              <span style={{ color: accent, fontSize: 'clamp(1.3rem, 3.2vw, 2rem)' }}>
+              <span style={{ color: accent, fontSize: 'max(1.3rem, 4.6cqw)' }}>
                 {CatIcon}
               </span>
-              <span className="text-[clamp(0.65rem,1.72vw,0.96rem)] font-bold leading-tight" style={{ color: accent }}>
+              <span className="text-[length:max(0.65rem,2.21cqw)] font-bold leading-tight" style={{ color: accent }}>
                 {cat.name}
               </span>
             </div>
@@ -137,12 +138,12 @@ export function Skills() {
                 return (
                   <span
                     key={skill}
-                    className="flex items-center gap-[4%] text-[clamp(0.7rem,1.82vw,1.04rem)] text-black whitespace-nowrap"
+                    className="flex items-center gap-[4%] text-[length:max(0.7rem,2.39cqw)] text-black whitespace-nowrap"
                   >
                     {icon && (
                       <span
                         className="flex-shrink-0"
-                        style={{ fontSize: 'clamp(1.05rem, 2.5vw, 1.4rem)', color: accent }}
+                        style={{ fontSize: 'max(1.05rem, 3.22cqw)', color: accent }}
                       >
                         {icon}
                       </span>

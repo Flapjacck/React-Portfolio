@@ -5,7 +5,7 @@
  * box on the bottom screen. The selector moves/ resizes with smooth
  * Framer Motion animations whenever the active box changes. It is entirely
  * decorational (pointer-events-none) and receives the target bounds from
- * its parent.
+ * its parent, plus a scale factor so the brackets grow with bigger screens.
  */
 
 import { motion } from 'framer-motion';
@@ -20,6 +20,8 @@ type Bounds = {
 
 interface BoxSelectorProps {
   bounds: Bounds | null;
+  /** multiplier for bracket size (1 = base size; grows with the screen) */
+  scale?: number;
 }
 
 /**
@@ -28,14 +30,18 @@ interface BoxSelectorProps {
  */
 // constants used by both the selector and corner renderer
 // enlarged again so brackets visibly cover the box corners per latest feedback
-const length = 24; // px each arm of the bracket (was 15)
-const thickness = 8; // px line width (was 5)
+const BASE_LENGTH = 24; // px each arm of the bracket at scale 1 (was 15)
+const BASE_THICKNESS = 8; // px line width at scale 1 (was 5)
 
 // base corner component – declared once so it isn’t recreated on every render
 interface CornerProps {
   position: 'tl' | 'tr' | 'bl' | 'br';
+  /** px each arm of the bracket */
+  length: number;
+  /** px line width */
+  thickness: number;
 }
-function Corner({ position }: CornerProps) {
+function Corner({ position, length, thickness }: CornerProps) {
   const styles: React.CSSProperties = { width: length, height: length, position: 'absolute' };
   // offset the container so the bars poke outside
   // nudge the corners slightly outward so they don't obscure the box interior
@@ -104,8 +110,12 @@ function Corner({ position }: CornerProps) {
   );
 }
 
-export function BoxSelector({ bounds }: BoxSelectorProps) {
+export function BoxSelector({ bounds, scale = 1 }: BoxSelectorProps) {
   if (!bounds) return null;
+
+  // bracket size follows the screen size (whole px keeps the edges crisp)
+  const length = Math.round(BASE_LENGTH * scale);
+  const thickness = Math.round(BASE_THICKNESS * scale);
 
   return (
     <motion.div
@@ -114,10 +124,10 @@ export function BoxSelector({ bounds }: BoxSelectorProps) {
       layout
       transition={{ duration: 0.2, ease: 'easeInOut' }}
     >
-      <Corner position="tl" />
-      <Corner position="tr" />
-      <Corner position="bl" />
-      <Corner position="br" />
+      <Corner position="tl" length={length} thickness={thickness} />
+      <Corner position="tr" length={length} thickness={thickness} />
+      <Corner position="bl" length={length} thickness={thickness} />
+      <Corner position="br" length={length} thickness={thickness} />
     </motion.div>
   );
 }

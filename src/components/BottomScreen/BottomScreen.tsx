@@ -34,7 +34,7 @@ export function BottomScreen({ children, showGrid = true, onBoxSelect, showPokem
       <motion.div
         className={`ds-screen-content relative ${
           showGrid ? 'bottom-screen-grid' : ''
-        } flex items-center justify-center p-2 md:p-3 lg:p-4`}
+        } flex items-center justify-center p-[2.3cqw]`}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, ease: 'easeInOut' }}

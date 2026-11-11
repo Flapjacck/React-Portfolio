@@ -18,6 +18,10 @@ import { useState, useRef, useLayoutEffect, useEffect, useCallback } from 'react
 import { Howl } from 'howler';
 import { BoxSelector } from './BoxSelector';
 
+// width (px) of the boxes container on a 696px-wide screen (1920×1080 vertical),
+// the size the selector brackets were designed for
+const SELECTOR_REFERENCE_WIDTH = 511;
+
 interface BottomScreenBoxesProps {
   /** Callback when a box is selected (clicked) */
   onBoxSelect?: (section: string) => void;
@@ -50,6 +54,8 @@ export function BottomScreenBoxes({ onBoxSelect }: BottomScreenBoxesProps) {
     width: number;
     height: number;
   } | null>(null);
+  // bracket scale: 1 at the reference size, grows when the screen is bigger
+  const [selectorScale, setSelectorScale] = useState(1);
 
   // prepare click sound once
   const clickSound = useRef<Howl | null>(null);
@@ -73,6 +79,8 @@ export function BottomScreenBoxes({ onBoxSelect }: BottomScreenBoxesProps) {
         width: tRect.width,
         height: tRect.height,
       });
+      // never shrink below the original bracket size (keeps phones unchanged)
+      setSelectorScale(Math.max(1, cRect.width / SELECTOR_REFERENCE_WIDTH));
     }
   }, [activeIndex]);
 
@@ -125,7 +133,7 @@ export function BottomScreenBoxes({ onBoxSelect }: BottomScreenBoxesProps) {
       transition={{ duration: 0.6, delay: 0.3, ease: 'easeInOut' }}
     >
       {/* selector overlay */}
-      <BoxSelector bounds={selectorBounds} />
+      <BoxSelector bounds={selectorBounds} scale={selectorScale} />
 
       {/* top large box */}
       <div
@@ -144,7 +152,7 @@ export function BottomScreenBoxes({ onBoxSelect }: BottomScreenBoxesProps) {
 
         {/* inner white rectangle remains right-aligned */}
         <div className="absolute right-[1%] top-1/2 -translate-y-1/2 w-[75.13%] h-[89.13%] bg-white flex items-center justify-center border border-gray-300">
-          <span className="text-[clamp(1rem,3vw,2rem)] font-medium text-black">About Me</span>
+          <span className="text-[length:max(1rem,4.6cqw)] font-medium text-black">About Me</span>
         </div>
       </div>
 
@@ -157,7 +165,7 @@ export function BottomScreenBoxes({ onBoxSelect }: BottomScreenBoxesProps) {
           onClick={handleClick(1)}
           className="w-[49.21%] h-full border-2 border-black box-gradient flex items-center justify-center p-[3%] cursor-pointer"
         >
-          <span className="text-[clamp(1rem,3vw,2rem)] font-medium">Skills</span>
+          <span className="text-[length:max(1rem,4.6cqw)] font-medium">Skills</span>
         </div>
         <div
           ref={(el) => { boxRefs.current[2] = el; }}
@@ -166,7 +174,7 @@ export function BottomScreenBoxes({ onBoxSelect }: BottomScreenBoxesProps) {
           onClick={handleClick(2)}
           className="w-[49.21%] h-full border-2 border-black box-gradient flex items-center justify-center p-[3%] cursor-pointer"
         >
-          <span className="text-[clamp(1rem,3vw,2rem)] font-medium">Experience</span>
+          <span className="text-[length:max(1rem,4.6cqw)] font-medium">Experience</span>
         </div>
       </div>
 
@@ -187,7 +195,7 @@ export function BottomScreenBoxes({ onBoxSelect }: BottomScreenBoxesProps) {
 
         {/* inner white rectangle remains right-aligned */}
         <div className="absolute right-[1%] top-1/2 -translate-y-1/2 w-[75.13%] h-[89.13%] bg-white flex items-center justify-center border border-gray-300">
-          <span className="text-[clamp(1rem,3vw,2rem)] font-medium text-black">Projects</span>
+          <span className="text-[length:max(1rem,4.6cqw)] font-medium text-black">Projects</span>
         </div>
       </div>
     </motion.div>

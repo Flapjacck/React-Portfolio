@@ -130,7 +130,7 @@ export function StartupScreen({
             <img
               src="/assets/Black_logo_pixel.png"
               alt="Logo"
-              className="h-32 sm:h-40 w-auto"
+              className="h-[max(8rem,23cqw)] w-auto"
             />
           </motion.div>
         </TopScreen>
@@ -152,19 +152,20 @@ export function StartupScreen({
             animate={{ opacity: isExiting ? 0 : 1 }}
             transition={{ duration: 0.6, ease: 'easeInOut' }}
           >
-            <div className="flex flex-col items-center justify-center text-center px-2 sm:px-3 md:px-4 gap-2 sm:gap-3">
+            {/* sizes use cqw (percent of the screen width) so the text scales with the screen */}
+            <div className="flex flex-col items-center justify-center text-center px-[2.3cqw] gap-[max(0.5rem,1.72cqw)]">
               {/* Bold heading */}
-              <p className="text-[clamp(1.5rem,5vw,3.5rem)] font-bold text-[var(--content-text, #2a2a2a)]">
+              <p className="text-[length:max(1.5rem,8.05cqw)] font-bold text-[var(--content-text, #2a2a2a)]">
                 {heading}
               </p>
 
               {/* Body message - supports multiple lines */}
-              <p className="text-[clamp(0.875rem,2vw,1.5rem)] leading-snug text-[var(--content-text, #2a2a2a)] whitespace-pre-line">
+              <p className="text-[length:max(0.875rem,3.45cqw)] leading-snug text-[var(--content-text, #2a2a2a)] whitespace-pre-line">
                 {message}
               </p>
 
               {/* Continue prompt */}
-              <p className="text-[clamp(0.75rem,1.8vw,1.25rem)] mt-2 text-[var(--content-text, #2a2a2a)] opacity-75 blink-text">
+              <p className="text-[length:max(0.75rem,2.87cqw)] mt-[0.4em] text-[var(--content-text, #2a2a2a)] opacity-75 blink-text">
                 {continueText}
               </p>
             </div>

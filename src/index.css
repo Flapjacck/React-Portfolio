@@ -74,6 +74,11 @@ body {
         /* maintain the 4:3 ratio via "aspect-ratio" on the element itself */
         aspect-ratio: 4/3;
 
+        /* size container: text and icons inside use cqw units (1cqw = 1% of the
+           screen's width) so they scale with the screen in every layout.
+           Sizes were tuned on the 696px-wide screen of a 1920×1080 vertical view */
+        container-type: inline-size;
+
         /* layout defaults: allow the element to size according to constraints */
         width: auto;
         height: auto;
@@ -97,7 +102,7 @@ body {
         max-height: calc(var(--ds-screen-max-w) * 3 / 4);
     }
 
-    /* SIDE-BY-SIDE layouts: two screens in a row, sized off both viewport axes so
+    /* SIDE-BY-SIDE layout: two screens in a row, sized off both viewport axes so
        they fill as much space as possible without overflowing.
          width-bound:  2 × width + 3 × gap ≤ 100vw  → width ≤ (100vw - 3gap) / 2
          height-bound: width × 3/4 + 2 × gap ≤ 100vh → width ≤ (100vh - 2gap) × 4/3
