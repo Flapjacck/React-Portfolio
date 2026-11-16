@@ -19,62 +19,60 @@ export interface ProjectProps {
 
 export const projects: ProjectProps[] = [
   {
-    title: "LOCAH.ai",
-    description:
-      "SU-sponsored retrieval assistant over Laurier's public information — cited answers for student questions.",
-    technologies: ["FastAPI", "Next.js", "PostgreSQL", "pgvector", "RAG"],
-    link: "https://github.com/LaurierCS/locah-ai",
-    image: "https://opengraph.githubassets.com/1/LaurierCS/locah-ai",
+    title: "Pier",
+    description: "Self-hosted control plane for k3s. Deploy apps from a git repo or Docker image and get a URL, with live build logs, scaling, persistent volumes, and deploy history.",
+    technologies: ["TypeScript", "React", "Fastify", "Kubernetes (k3s)", "Docker", "Proxmox"],
+    link: "https://github.com/Flapjacck/pier",
+    image: "https://raw.githubusercontent.com/Flapjacck/pier/main/frontend/public/loading/pier-loader-dark-256.gif",
+  },
+  {
+    title: "Solvd",
+    description: "Speedcubing timer that saves every solve in the browser with IndexedDB, with cubing.js scrambles, shipped as a non-root nginx Docker container.",
+    technologies: ["React", "TypeScript", "Tailwind", "cubing.js", "Dexie", "Docker"],
+    link: "https://github.com/Flapjacck/Solvd",
+    image: "https://raw.githubusercontent.com/Flapjacck/Solvd/main/frontend/public/og-image.png",
   },
   {
     title: "MoxBox",
-    description: "Lightweight Self-Hosted File Storage Platform.",
-    technologies: ["React", "TypeScript", "Vite", "Node.js", "Express", "Proxmox"],
+    description: "Self-hosted file storage platform, a personal iCloud/Google Drive alternative running on a Proxmox homelab, with auth, a file dashboard, and trash.",
+    technologies: ["React", "TypeScript", "Node.js", "Express", "SQLite", "Proxmox"],
     link: "https://github.com/Flapjacck/moxbox",
-    image: "https://github.com/Flapjacck/moxbox/raw/main/frontend/src/assets/boxmox.svg",
+    image: "https://i.imgur.com/A7Clr5i.png",
+  },
+  {
+    title: "Swing",
+    description: "Client-side Fabric mod for Minecraft that tweaks the first-person viewmodel (item scale, swing speed, offsets, tilt) from a live in-game settings panel. Published on Modrinth.",
+    technologies: ["Java", "Fabric", "Gradle", "GitHub Actions"],
+    link: "https://github.com/Flapjacck/swing",
+    image: "https://raw.githubusercontent.com/Flapjacck/swing/main/src/main/resources/assets/swing/icon.png",
   },
   {
     title: "BirdWatch",
-    description:
-      "A web application built with React for exploring and discovering bird courses.",
-    technologies: ["React", "Python", "Node.JS", "Reddit API"],
+    description: "Finds Laurier bird courses by running sentiment analysis over Reddit discussions and surfacing the results in a React dashboard.",
+    technologies: ["React", "TypeScript", "Python", "NLTK", "Express", "Reddit API"],
     link: "https://github.com/Flapjacck/BirdWatch",
-    image:
-      "https://repository-images.githubusercontent.com/965835334/14a3862f-68db-4788-8e48-c097efcb4147",
+    image: "https://repository-images.githubusercontent.com/965835334/14a3862f-68db-4788-8e48-c097efcb4147",
   },
   {
     title: "SKOS",
-    description:
-      "A bare-bones operating system kernel built from scratch in C and Assembly for x86 architecture.",
-    technologies: ["C", "Assembly", "x86", "NASM", "GCC", "QEMU"],
+    description: "x86 hobby kernel in C and Assembly with GRUB boot, interrupts, keyboard/timer/ATA drivers, FAT32 support, and a basic shell.",
+    technologies: ["C", "Assembly", "x86", "NASM", "GRUB", "QEMU"],
     link: "https://github.com/Flapjacck/skos",
-    image: "https://upload.wikimedia.org/wikipedia/commons/1/19/C_Logo.png",
+    image: "https://opengraph.githubassets.com/1/Flapjacck/skos",
   },
   {
-    title: "PassDat",
-    description:
-      "A sleek calculator built with JavaScript, HTML, and CSS that helps students calculate their current grades and determine what they need to pass or achieve their target score.",
-    technologies: ["HTML", "CSS", "JS", "GitHub Pages"],
-    link: "https://github.com/Flapjacck/PassDat",
-    image:
-      "https://raw.githubusercontent.com/Flapjacck/PassDat/refs/heads/main/images/PassDat-logo.png",
+    title: "CoCDB",
+    description: "Go REST API that serves Clash of Clans game data like troops, buildings, and upgrade stats as clean, queryable JSON.",
+    technologies: ["Go", "REST API", "JSON"],
+    link: "https://github.com/Flapjacck/CoCDB",
+    image: "https://opengraph.githubassets.com/1/Flapjacck/CoCDB",
   },
   {
-    title: "Portfolio Website",
-    description:
-      "This Site",
-    technologies: ["React", "TypeScript", "Tailwind"],
-    link: "https://github.com/Flapjacck/React-Portfolio",
-    image: "https://m.media-amazon.com/images/I/5103LmIExkL._AC_UF1000,1000_QL80_.jpg",
-  },
-  {
-    title: "Simple-Blackjack",
-    description:
-      "Developed a simplified Blackjack game in C, enhancing skills in game logic, input validation, user interaction, control flow, and memory management.",
-    technologies: ["C"],
-    link: "https://github.com/Flapjacck/Simple-Blackjack",
-    image:
-      "https://camo.githubusercontent.com/929b912b215ad22643187c818ad6a3eb9b88f96c7184c8a292a9a060b8d98f77/68747470733a2f2f736f6369616c6966792e6769742e63692f466c61706a6163636b2f53696d706c652d426c61636b4a61636b2f696d6167653f6465736372697074696f6e3d31266465736372697074696f6e4564697461626c653d47616d652532306f66253230426c61636b6a61636b2532306d616465253230696e2532307468652532304325323070726f6772616d6d696e672532306c616e67756167652e25323043726561746564253230746f25323064656570656e2532306d79253230756e6465727374616e64696e672532306f66253230746865253230432532306c616e6775616765253230616e642532306769742e266c616e67756167653d31266e616d653d31267061747465726e3d506c7573267374617267617a6572733d31267468656d653d4461726b",
+    title: "Rhythm Radar",
+    description: "Spotify dashboard that visualizes your listening habits, top artists and tracks, and current playback, with a playlist-creation tool.",
+    technologies: ["React", "TypeScript", "Tailwind", "FastAPI", "PostgreSQL", "Spotify API"],
+    link: "https://github.com/Flapjacck/Rhythm-Radar",
+    image: "https://i.imgur.com/uBVp5Cd.png",
   },
 ];
 
