@@ -4,8 +4,7 @@
  * DS Lite startup/warning screen that displays on initial page load.
  * Shows a black logo on the top display and a health/safety-style warning
  * on the bottom display. User must click/tap the bottom screen to proceed.
- * Features fade-in animation on mount and fade-out when dismissed. Uses the
- * same screen layout as the main view so the screens don't jump afterwards.
+ * Features fade-in animation on mount and fade-out when dismissed.
  */
 
 import { useState, useRef, useEffect } from 'react';
@@ -13,11 +12,6 @@ import { motion } from 'framer-motion';
 import { TopScreen } from '../TopScreen/TopScreen';
 import { BottomScreen } from '../BottomScreen/BottomScreen';
 import { PowerScreen } from './PowerScreen';
-import { DualScreenLayout } from '../ScreenLayout';
-import type { ScreenLayout } from '../../hooks/useScreenLayout';
-
-// default rotate handler when no layout control is passed in
-const noop = () => {};
 
 export interface StartupScreenProps {
   /** Bold heading text (default: "WARNING") */
@@ -28,10 +22,6 @@ export interface StartupScreenProps {
   continueText?: string;
   /** Callback fired when fade-out animation completes */
   onFinish?: () => void;
-  /** Screen layout to use (default: vertical) */
-  layout?: ScreenLayout;
-  /** Callback for the rotate button (default: no-op) */
-  onCycleLayout?: () => void;
 }
 
 /**
@@ -40,8 +30,6 @@ export interface StartupScreenProps {
  * @param message - Optional body message text
  * @param continueText - Optional continue prompt text
  * @param onFinish - Callback when exit animation completes
- * @param layout - Screen layout shared with the main view
- * @param onCycleLayout - Callback for the rotate button
  * @returns Fullscreen startup screen component
  */
 export function StartupScreen({
@@ -49,8 +37,6 @@ export function StartupScreen({
   message = 'BEFORE EXPLORING, READ THIS\n\nI AM A DEVELOPER WITH A PASSION FOR TECH\n\nTHIS SITE SHOWCASES MY WORK AND ABILITIES',
   continueText = 'Touch the Touch Screen to continue',
   onFinish,
-  layout = 'vertical',
-  onCycleLayout = noop,
 }: StartupScreenProps) {
   // Boot stage: "off" (power button) or "boot" (warning screen plus audio)
   const [stage, setStage] = useState<'off' | 'boot'>('off');
@@ -110,11 +96,9 @@ export function StartupScreen({
   // Otherwise render the original warning screen but with a white background
   // and gated continue interaction.
   return (
-    <DualScreenLayout
-      layout={layout}
-      onCycleLayout={onCycleLayout}
-      top={
-        // Top Screen - Logo with fade animation, no header or grid
+    <main className="flex flex-col items-center justify-center gap-(--screen-gap) h-screen w-full overflow-hidden py-(--screen-gap) px-(--screen-gap)">
+      <div className="w-full max-w-(--screen-max-width) flex flex-col items-center justify-center gap-(--screen-gap)">
+        {/* Top Screen - Logo with fade animation, no header or grid */}
         <TopScreen hideHeader showGrid={false}>
           <motion.div
             className="flex items-center justify-center h-full w-full"
@@ -130,13 +114,12 @@ export function StartupScreen({
             <img
               src="/assets/Black_logo_pixel.png"
               alt="Logo"
-              className="h-[max(8rem,23cqw)] w-auto"
+              className="h-32 sm:h-40 w-auto"
             />
           </motion.div>
         </TopScreen>
-      }
-      bottom={
-        // Bottom Screen - Warning text with fade animation, hide grid
+
+        {/* Bottom Screen - Warning text with fade animation, hide grid */}
         <BottomScreen showGrid={false} showPokemon={false}>
           <motion.div
             className="flex items-center justify-center h-full w-full cursor-pointer"
@@ -152,26 +135,25 @@ export function StartupScreen({
             animate={{ opacity: isExiting ? 0 : 1 }}
             transition={{ duration: 0.6, ease: 'easeInOut' }}
           >
-            {/* sizes use cqw (percent of the screen width) so the text scales with the screen */}
-            <div className="flex flex-col items-center justify-center text-center px-[2.3cqw] gap-[max(0.5rem,1.72cqw)]">
+            <div className="flex flex-col items-center justify-center text-center px-2 sm:px-3 md:px-4 gap-2 sm:gap-3">
               {/* Bold heading */}
-              <p className="text-[length:max(1.5rem,8.05cqw)] font-bold text-[var(--content-text, #2a2a2a)]">
+              <p className="text-[clamp(1.5rem,5vw,3.5rem)] font-bold text-[var(--content-text, #2a2a2a)]">
                 {heading}
               </p>
 
               {/* Body message - supports multiple lines */}
-              <p className="text-[length:max(0.875rem,3.45cqw)] leading-snug text-[var(--content-text, #2a2a2a)] whitespace-pre-line">
+              <p className="text-[clamp(0.875rem,2vw,1.5rem)] leading-snug text-[var(--content-text, #2a2a2a)] whitespace-pre-line">
                 {message}
               </p>
 
               {/* Continue prompt */}
-              <p className="text-[length:max(0.75rem,2.87cqw)] mt-[0.4em] text-[var(--content-text, #2a2a2a)] opacity-75 blink-text">
+              <p className="text-[clamp(0.75rem,1.8vw,1.25rem)] mt-2 text-[var(--content-text, #2a2a2a)] opacity-75 blink-text">
                 {continueText}
               </p>
             </div>
           </motion.div>
         </BottomScreen>
-      }
-    />
+      </div>
+    </main>
   );
 }
